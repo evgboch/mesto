@@ -14,3 +14,10 @@
 @import url("../blocks/profile/__edit-button/profile__edit-button.css");
 @import url("../blocks/profile/__subtitle/profile__subtitle.css");
 @import url("../blocks/profile/__add-button/profile__add-button.css");
+@import url("../blocks/photo-cards/photo-cards.css");
+@import url("../blocks/photo-cards/__grid/photo-cards__grid.css");
+@import url("../blocks/photo-cards/__element/photo-cards__element.css");
+@import url("../blocks/photo-cards/__picture/photo-cards__picture.css");
+@import url("../blocks/photo-cards/__title-container/photo-cards__title-container.css");
+@import url("../blocks/photo-cards/__title/photo-cards__title.css");
+@import url("../blocks/photo-cards/__like-button/photo-cards__like-button.css");
