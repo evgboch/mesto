@@ -21,3 +21,6 @@
 @import url("../blocks/photo-cards/__title-container/photo-cards__title-container.css");
 @import url("../blocks/photo-cards/__title/photo-cards__title.css");
 @import url("../blocks/photo-cards/__like-button/photo-cards__like-button.css");
+@import url("../blocks/page/__footer/page__footer.css");
+@import url("../blocks/footer/footer.css");
+@import url("../blocks/footer/__copyright/footer__copyright.css");
