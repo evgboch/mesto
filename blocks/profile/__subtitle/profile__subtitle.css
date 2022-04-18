@@ -3,7 +3,7 @@
   font-weight: 400;
   font-size: 18px;
   line-height: 22px;
-  margin-top: 16px;
+  margin-top: 7px;
   margin-bottom: 0;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -16,6 +16,6 @@
     line-height: 17px;
     width: 100%;
     text-align: center;
-    margin-top: 14px;
+    /* margin-top: 14px; */
   }
 }

@@ -8,18 +8,10 @@
   <title>Mesto</title>
 </head>
 <body class="page">
-  <div class="popup">
-    <form class="popup__container">
-      <p class="popup__title">Редактировать профиль</p>
-      <input class="popup__input popup__name-field" type="text" name="name">
-      <input class="popup__input popup__job-field" type="text" name="job">
-      <button class="popup__submit-button" type="submit">Сохранить</button>
-      <button class="popup__close-button" type="button"></button>
-    </form>
-  </div>
   <header class="header page__header">
     <div class="header__logo"></div>
   </header>
+
   <main class="content">
     <section class="profile content__profile">
       <div class="profile__info">
@@ -27,12 +19,12 @@
         <div class="profile__text-container">
           <div class="profile__title-container">
             <h1 class="profile__title">Жак-Ив Кусто</h1>
-            <button class="profile__edit-button"></button>
+            <button class="profile__edit-button" type="button"></button>
           </div>
           <p class="profile__subtitle">Исследователь океана</p>
         </div>
       </div>
-      <button class="profile__add-button"></button>
+      <button class="profile__add-button" type="button"></button>
     </section>
     <section class="photo-cards">
       <ul class="photo-cards__grid">
@@ -40,50 +32,61 @@
           <img class="photo-cards__picture" src="./images/madrid.jpg" alt="Мадрид">
           <div class="photo-cards__title-container">
             <h2 class="photo-cards__title">Мадрид</h2>
-            <button class="photo-cards__like-button"></button>
+            <button class="photo-cards__like-button" type="button"></button>
           </div>
         </li>
         <li class="photo-cards__element">
           <img class="photo-cards__picture" src="./images/maldives.jpg" alt="Мальдивы">
           <div class="photo-cards__title-container">
             <h2 class="photo-cards__title">Мальдивы</h2>
-            <button class="photo-cards__like-button"></button>
+            <button class="photo-cards__like-button" type="button"></button>
           </div>
         </li>
         <li class="photo-cards__element">
           <img class="photo-cards__picture" src="./images/fars-province.jpg" alt="Провинция Фарс">
           <div class="photo-cards__title-container">
             <h2 class="photo-cards__title">Провинция Фарс</h2>
-            <button class="photo-cards__like-button"></button>
+            <button class="photo-cards__like-button" type="button"></button>
           </div>
         </li>
         <li class="photo-cards__element">
           <img class="photo-cards__picture" src="./images/grand-canyon.jpg" alt="Большой каньон">
           <div class="photo-cards__title-container">
             <h2 class="photo-cards__title">Большой каньон</h2>
-            <button class="photo-cards__like-button"></button>
+            <button class="photo-cards__like-button" type="button"></button>
           </div>
         </li>
         <li class="photo-cards__element">
           <img class="photo-cards__picture" src="./images/paraty.jpg" alt="Парати">
           <div class="photo-cards__title-container">
             <h2 class="photo-cards__title">Парати</h2>
-            <button class="photo-cards__like-button"></button>
+            <button class="photo-cards__like-button" type="button"></button>
           </div>
         </li>
         <li class="photo-cards__element">
           <img class="photo-cards__picture" src="./images/boston.jpg" alt="Бостон">
           <div class="photo-cards__title-container">
             <h2 class="photo-cards__title">Бостон</h2>
-            <button class="photo-cards__like-button"></button>
+            <button class="photo-cards__like-button" type="button"></button>
           </div>
         </li>
       </ul>
     </section>
   </main>
+
   <footer class="footer page__footer">
     <p class="footer__copyright">© 2022 Mesto Russia</p>
   </footer>
+
+  <div class="popup">
+    <form class="popup__container" name="popupForm">
+      <h2 class="popup__title">Редактировать профиль</h2>
+      <input class="popup__input" type="text" name="nameField" placeholder="Жак-Ив Кусто">
+      <input class="popup__input" type="text" name="jobField" placeholder="Исследователь океана">
+      <button class="popup__submit-button" type="submit">Сохранить</button>
+      <button class="popup__close-button" type="button"></button>
+    </form>
+  </div>
   <script src="./scripts/index.js"></script>
 </body>
 </html>
