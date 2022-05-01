@@ -31,35 +31,55 @@ const initialCards = [
   }
 ];
 
-const openPopupButton = document.querySelector(".profile__edit-button");
+// const openPopupButton = document.querySelector(".profile__edit-button");
 
 const popup = document.querySelector(".popup");
 const formElement = popup.querySelector(".popup__container");
 const closePopupButton = formElement.querySelector(".popup__close-button");
 const nameInput = formElement.querySelector(".popup__input[name = nameField]");
 const jobInput = formElement.querySelector(".popup__input[name = jobField]");
+const popupTitle = formElement.querySelector(".popup__title");
 
 const profile = document.querySelector(".profile");
 const profileTitle = profile.querySelector(".profile__title");
 const profileSubtitle = profile.querySelector(".profile__subtitle");
+const openPopupButton = profile.querySelector(".profile__edit-button");
+const addCardButton = profile.querySelector(".profile__add-button");
 
 const photoCardsContainer = document.querySelector(".photo-cards__grid");
 const photoCardsTemplate = document.querySelector(".photo-cards-template").content.querySelector(".photo-cards__element");
 
-function popupOpenToggle() {
-  popup.classList.toggle("popup_opened");
-  nameInput.setAttribute("value", profileTitle.textContent);
-  jobInput.setAttribute("value", profileSubtitle.textContent);
+function popupOpen() {
+  popup.classList.add("popup_opened");
+  popupTitle.textContent = "Редактировать профиль";
+  nameInput.setAttribute("placeholder", "Жак-Ив Кусто");
+  jobInput.setAttribute("placeholder", "Исследователь океана");
+  nameInput.value = profileTitle.textContent;
+  jobInput.value = profileSubtitle.textContent;
 }
 
-openPopupButton.addEventListener("click", popupOpenToggle);
-closePopupButton.addEventListener("click", popupOpenToggle);
+function popupClose() {
+  popup.classList.remove("popup_opened");
+  nameInput.value = "";
+  jobInput.value = "";
+}
+
+function photoPopupOpen() {
+  popup.classList.toggle("popup_opened");
+  popupTitle.textContent = "Новое место";
+  nameInput.setAttribute("placeholder", "Название");
+  jobInput.setAttribute("placeholder", "Ссылка на картинку");
+}
+
+openPopupButton.addEventListener("click", popupOpen);
+closePopupButton.addEventListener("click", popupClose);
+addCardButton.addEventListener("click", photoPopupOpen);
 
 function formSubmitHandler(evt) {
   evt.preventDefault();
   profileTitle.textContent = nameInput.value;
   profileSubtitle.textContent = jobInput.value;
-  popupOpenToggle();
+  popupClose();
 }
 
 formElement.addEventListener('submit', formSubmitHandler);
