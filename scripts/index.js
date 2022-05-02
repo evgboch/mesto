@@ -17,26 +17,34 @@ const cardAddButton = profile.querySelector(".profile__add-button");
 const photoCardsContainer = document.querySelector(".photo-cards__grid");
 const photoCardsTemplate = document.querySelector(".photo-cards-template").content.querySelector(".photo-cards__element");
 
+function openPopup(popup, classModifier) {
+  popup.classList.add(classModifier);
+}
+
+function closePopup(popup, classModifier) {
+  popup.classList.remove(classModifier);
+}
+
 function infoPopupOpenHandler() {
-  popup.classList.add("popup_opened");
   popupTitle.textContent = "Редактировать профиль";
   topInput.setAttribute("placeholder", "Жак-Ив Кусто");
   bottomInput.setAttribute("placeholder", "Исследователь океана");
   topInput.value = profileTitle.textContent;
   bottomInput.value = profileSubtitle.textContent;
+  openPopup(popup, "popup_opened");
 }
 
 function photoPopupOpenHandler() {
-  popup.classList.add("popup_opened");
   popupTitle.textContent = "Новое место";
   topInput.setAttribute("placeholder", "Название");
   bottomInput.setAttribute("placeholder", "Ссылка на картинку");
+  openPopup(popup, "popup_opened");
 }
 
 function popupCloseHandler() {
-  popup.classList.remove("popup_opened");
   topInput.value = "";
   bottomInput.value = "";
+  closePopup(popup, "popup_opened");
 }
 
 function formSubmitHandler(evt) {
@@ -63,14 +71,14 @@ function deleteButtonHandler(evt) {
 }
 
 function pictureClickHandler(evt) {
-  photoPopup.classList.toggle("photo-popup_opened");
-
   const photoPopupImage = photoPopup.querySelector(".photo-popup__image");
   const photoPopupCaption = photoPopup.querySelector(".photo-popup__title");
 
   photoPopupImage.setAttribute("src", evt.target.getAttribute("src"));
   photoPopupImage.setAttribute("alt", evt.target.getAttribute("alt"));
   photoPopupCaption.textContent = evt.target.getAttribute("alt");
+
+  openPopup(photoPopup, "photo-popup_opened");
 }
 
 function generatePhotoCard(cardsElement) {
@@ -104,5 +112,7 @@ initialCards.forEach((cardsElement) => {
 popupOpenButton.addEventListener("click", infoPopupOpenHandler);
 cardAddButton.addEventListener("click", photoPopupOpenHandler);
 popupCloseButton.addEventListener("click", popupCloseHandler);
-photoPopupCloseButton.addEventListener("click", pictureClickHandler);
+photoPopupCloseButton.addEventListener("click", () => {
+  closePopup(photoPopup, "photo-popup_opened");
+});
 formElement.addEventListener('submit', formSubmitHandler);
