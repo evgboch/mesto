@@ -88,6 +88,10 @@ function formSubmitHandler(evt) {
   popupClose();
 }
 
+function likeButtonHandler(evt) {
+  evt.target.closest(".photo-cards__like-button").classList.toggle("photo-cards__like-button_active");
+}
+
 formElement.addEventListener('submit', formSubmitHandler);
 
 function generatePhotoCard(cardsElement) {
@@ -99,6 +103,9 @@ function generatePhotoCard(cardsElement) {
   const photoCardPicture = newPhotoCard.querySelector(".photo-cards__picture");
   photoCardPicture.setAttribute("src", cardsElement.link);
   photoCardPicture.setAttribute("alt", cardsElement.alt);
+
+  const likeButton = newPhotoCard.querySelector(".photo-cards__like-button");
+  likeButton.addEventListener("click", likeButtonHandler);
 
   return newPhotoCard;
 }
