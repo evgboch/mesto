@@ -99,7 +99,7 @@ function pictureClickHandler(evt) {
   photoPopup.classList.toggle("photo-popup_opened");
 
   const photoPopupImage = photoPopup.querySelector(".photo-popup__image");
-  const photoPopupCaption = photoPopup.querySelector(".photo-popup__caption");
+  const photoPopupCaption = photoPopup.querySelector(".photo-popup__title");
 
   photoPopupImage.setAttribute("src", evt.target.getAttribute("src"));
   photoPopupImage.setAttribute("alt", evt.target.getAttribute("alt"));

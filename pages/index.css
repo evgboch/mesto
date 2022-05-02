@@ -35,7 +35,7 @@
 @import url("../blocks/popup/__close-button/popup__close-button.css");
 @import url("../blocks/photo-popup/photo-popup.css");
 @import url("../blocks/photo-popup/_opened/photo-popup_opened.css");
-@import url("../blocks/photo-popup/__figure/photo-popup__figure.css");
+@import url("../blocks/photo-popup/__container/photo-popup__container.css");
 @import url("../blocks/photo-popup/__image/photo-popup__image.css");
-@import url("../blocks/photo-popup/__caption/photo-popup__caption.css");
+@import url("../blocks/photo-popup/__title/photo-popup__title.css");
 @import url("../blocks/photo-popup/__close-button/photo-popup__close-button.css");
