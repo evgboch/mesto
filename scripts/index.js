@@ -70,13 +70,13 @@ function deleteButtonHandler(evt) {
   evt.target.closest(".photo-cards__element").remove();
 }
 
-function pictureClickHandler(evt) {
+function pictureClickHandler(cardLink, cardCaption, cardImgAlt) {
   const photoPopupImage = photoPopup.querySelector(".photo-popup__image");
   const photoPopupCaption = photoPopup.querySelector(".photo-popup__title");
 
-  photoPopupImage.setAttribute("src", evt.target.getAttribute("src"));
-  photoPopupImage.setAttribute("alt", evt.target.getAttribute("alt"));
-  photoPopupCaption.textContent = evt.target.getAttribute("alt");
+  photoPopupImage.setAttribute("src", cardLink);
+  photoPopupImage.setAttribute("alt", cardImgAlt);
+  photoPopupCaption.textContent = cardCaption;
 
   openPopup(photoPopup, "photo-popup_opened");
 }
@@ -90,7 +90,10 @@ function generatePhotoCard(cardsElement) {
   const photoCardPicture = newPhotoCard.querySelector(".photo-cards__picture");
   photoCardPicture.setAttribute("src", cardsElement.link);
   photoCardPicture.setAttribute("alt", cardsElement.alt);
-  photoCardPicture.addEventListener("click", pictureClickHandler);
+
+  photoCardPicture.addEventListener("click", () => {
+    pictureClickHandler(cardsElement.link, cardsElement.name, cardsElement.alt);
+  });
 
   const likeButton = newPhotoCard.querySelector(".photo-cards__like-button");
   likeButton.addEventListener("click", likeButtonHandler);
