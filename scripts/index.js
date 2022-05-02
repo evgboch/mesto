@@ -31,13 +31,11 @@ const initialCards = [
   }
 ];
 
-// const openPopupButton = document.querySelector(".profile__edit-button");
-
 const popup = document.querySelector(".popup");
 const formElement = popup.querySelector(".popup__container");
 const closePopupButton = formElement.querySelector(".popup__close-button");
-const nameInput = formElement.querySelector(".popup__input[name = nameField]");
-const jobInput = formElement.querySelector(".popup__input[name = jobField]");
+const topInput = formElement.querySelector(".popup__input[name = topField]");
+const bottomInput = formElement.querySelector(".popup__input[name = bottomField]");
 const popupTitle = formElement.querySelector(".popup__title");
 
 const profile = document.querySelector(".profile");
@@ -49,36 +47,44 @@ const addCardButton = profile.querySelector(".profile__add-button");
 const photoCardsContainer = document.querySelector(".photo-cards__grid");
 const photoCardsTemplate = document.querySelector(".photo-cards-template").content.querySelector(".photo-cards__element");
 
-function popupOpen() {
+function infoPopupOpen() {
   popup.classList.add("popup_opened");
   popupTitle.textContent = "Редактировать профиль";
-  nameInput.setAttribute("placeholder", "Жак-Ив Кусто");
-  jobInput.setAttribute("placeholder", "Исследователь океана");
-  nameInput.value = profileTitle.textContent;
-  jobInput.value = profileSubtitle.textContent;
+  topInput.setAttribute("placeholder", "Жак-Ив Кусто");
+  bottomInput.setAttribute("placeholder", "Исследователь океана");
+  topInput.value = profileTitle.textContent;
+  bottomInput.value = profileSubtitle.textContent;
+}
+
+function photoPopupOpen() {
+  popup.classList.add("popup_opened");
+  popupTitle.textContent = "Новое место";
+  topInput.setAttribute("placeholder", "Название");
+  bottomInput.setAttribute("placeholder", "Ссылка на картинку");
 }
 
 function popupClose() {
   popup.classList.remove("popup_opened");
-  nameInput.value = "";
-  jobInput.value = "";
+  topInput.value = "";
+  bottomInput.value = "";
 }
 
-function photoPopupOpen() {
-  popup.classList.toggle("popup_opened");
-  popupTitle.textContent = "Новое место";
-  nameInput.setAttribute("placeholder", "Название");
-  jobInput.setAttribute("placeholder", "Ссылка на картинку");
-}
-
-openPopupButton.addEventListener("click", popupOpen);
-closePopupButton.addEventListener("click", popupClose);
+openPopupButton.addEventListener("click", infoPopupOpen);
 addCardButton.addEventListener("click", photoPopupOpen);
+closePopupButton.addEventListener("click", popupClose);
 
 function formSubmitHandler(evt) {
   evt.preventDefault();
-  profileTitle.textContent = nameInput.value;
-  profileSubtitle.textContent = jobInput.value;
+
+  if (popupTitle.textContent === "Редактировать профиль") {
+    profileTitle.textContent = topInput.value;
+    profileSubtitle.textContent = bottomInput.value;
+  }
+
+  else if (popupTitle.textContent === "Новое место") {
+    renderPhotoCard({ name: topInput.value, link: bottomInput.value, alt: topInput.value });
+  }
+
   popupClose();
 }
 
