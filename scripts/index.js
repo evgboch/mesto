@@ -1,6 +1,6 @@
 const popup = document.querySelector(".popup");
 const formElement = popup.querySelector(".popup__container");
-const closePopupButton = formElement.querySelector(".popup__close-button");
+const popupCloseButton = formElement.querySelector(".popup__close-button");
 const topInput = formElement.querySelector(".popup__input[name = topField]");
 const bottomInput = formElement.querySelector(".popup__input[name = bottomField]");
 const popupTitle = formElement.querySelector(".popup__title");
@@ -11,8 +11,8 @@ const photoPopupCloseButton = photoPopup.querySelector(".photo-popup__close-butt
 const profile = document.querySelector(".profile");
 const profileTitle = profile.querySelector(".profile__title");
 const profileSubtitle = profile.querySelector(".profile__subtitle");
-const openPopupButton = profile.querySelector(".profile__edit-button");
-const addCardButton = profile.querySelector(".profile__add-button");
+const popupOpenButton = profile.querySelector(".profile__edit-button");
+const cardAddButton = profile.querySelector(".profile__add-button");
 
 const photoCardsContainer = document.querySelector(".photo-cards__grid");
 const photoCardsTemplate = document.querySelector(".photo-cards-template").content.querySelector(".photo-cards__element");
@@ -101,8 +101,8 @@ initialCards.forEach((cardsElement) => {
   renderPhotoCard(cardsElement);
 });
 
-openPopupButton.addEventListener("click", infoPopupOpenHandler);
-addCardButton.addEventListener("click", photoPopupOpenHandler);
-closePopupButton.addEventListener("click", popupCloseHandler);
+popupOpenButton.addEventListener("click", infoPopupOpenHandler);
+cardAddButton.addEventListener("click", photoPopupOpenHandler);
+popupCloseButton.addEventListener("click", popupCloseHandler);
 photoPopupCloseButton.addEventListener("click", pictureClickHandler);
 formElement.addEventListener('submit', formSubmitHandler);
