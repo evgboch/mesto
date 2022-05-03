@@ -36,21 +36,29 @@
     <p class="footer__copyright">© 2022 Mesto Russia</p>
   </footer>
 
-  <div class="popup">
-    <form class="popup__container" name="popupForm">
-      <h2 class="popup__title"></h2>
-      <input class="popup__input" type="text" name="topField">
-      <input class="popup__input" type="text" name="bottomField">
-      <button class="popup__submit-button" type="submit">Сохранить</button>
-      <button class="popup__close-button" type="button"></button>
+  <div class="popup popup_profile">
+    <form class="popup__container popup__container_profile" name="popupProfileForm">
+      <h2 class="popup__title popup__title_profile"></h2>
+      <input class="popup__input popup__input_type_name" type="text" name="nameField">
+      <input class="popup__input popup__input_type_description" type="text" name="descriptionField">
+      <button class="popup__submit-button popup__submit-button_profile" type="submit">Сохранить</button>
+      <button class="popup__close-button popup__close-button_profile" type="button"></button>
     </form>
   </div>
-
-  <div class="photo-popup">
-    <div class="photo-popup__container">
-      <img src="#" alt="#" class="photo-popup__image">
-      <h3 class="photo-popup__title"></h3>
-      <button class="photo-popup__close-button" type="button"></button>
+  <div class="popup popup_card">
+    <form class="popup__container popup__container_card" name="popupCardForm">
+      <h2 class="popup__title popup__title_card"></h2>
+      <input class="popup__input popup__input_type_card-name" type="text" name="cardNameField">
+      <input class="popup__input popup__input_type_link" type="text" name="linkField">
+      <button class="popup__submit-button popup__submit-button_card" type="submit">Сохранить</button>
+      <button class="popup__close-button popup__close-button_card" type="button"></button>
+    </form>
+  </div>
+  <div class="popup popup_photo">
+    <div class="popup__photo-container">
+      <img src="#" alt="#" class="popup__image">
+      <h3 class="popup__image-caption"></h3>
+      <button class="popup__close-button popup__close-button_photo" type="button"></button>
     </div>
   </div>
 

@@ -1,20 +1,19 @@
-const profilePopup = document.querySelector(".popup");
-const profileFormElement = profilePopup.querySelector(".popup__container");
-const profilePopupCloseButton = profileFormElement.querySelector(".popup__close-button");
-const profileTopInput = profileFormElement.querySelector(".popup__input[name = topField]");
-const profileBottomInput = profileFormElement.querySelector(".popup__input[name = bottomField]");
-const profilePopupTitle = profileFormElement.querySelector(".popup__title");
+const profilePopup = document.querySelector(".popup_profile");
+const profileFormElement = profilePopup.querySelector(".popup__container_profile");
+const profilePopupCloseButton = profileFormElement.querySelector(".popup__close-button_profile");
+const profileTopInput = profileFormElement.querySelector(".popup__input[name = nameField]");
+const profileBottomInput = profileFormElement.querySelector(".popup__input[name = descriptionField]");
+const profilePopupTitle = profileFormElement.querySelector(".popup__title_profile");
 
-const cardPopup = document.querySelector(".popup").cloneNode(true);
-profilePopup.after(cardPopup);
-const cardFormElement = cardPopup.querySelector(".popup__container");
-const cardPopupCloseButton = cardFormElement.querySelector(".popup__close-button");
-const cardTopInput = cardFormElement.querySelector(".popup__input[name = topField]");
-const cardBottomInput = cardFormElement.querySelector(".popup__input[name = bottomField]");
-const cardPopupTitle = cardFormElement.querySelector(".popup__title");
+const cardPopup = document.querySelector(".popup_card");
+const cardFormElement = cardPopup.querySelector(".popup__container_card");
+const cardPopupCloseButton = cardFormElement.querySelector(".popup__close-button_card");
+const cardTopInput = cardFormElement.querySelector(".popup__input[name = cardNameField]");
+const cardBottomInput = cardFormElement.querySelector(".popup__input[name = linkField]");
+const cardPopupTitle = cardFormElement.querySelector(".popup__title_card");
 
-const photoPopup = document.querySelector(".photo-popup");
-const photoPopupCloseButton = photoPopup.querySelector(".photo-popup__close-button");
+const photoPopup = document.querySelector(".popup_photo");
+const photoPopupCloseButton = photoPopup.querySelector(".popup__close-button_photo");
 
 const profile = document.querySelector(".profile");
 const profileTitle = profile.querySelector(".profile__title");
@@ -97,17 +96,17 @@ function deleteButtonHandler(evt) {
 }
 
 function pictureClickHandler(cardLink, cardCaption, cardImgAlt) {
-  const photoPopupImage = photoPopup.querySelector(".photo-popup__image");
-  const photoPopupCaption = photoPopup.querySelector(".photo-popup__title");
+  const photoPopupImage = photoPopup.querySelector(".popup__image");
+  const photoPopupCaption = photoPopup.querySelector(".popup__image-caption");
 
   photoPopupImage.setAttribute("src", cardLink);
   photoPopupImage.setAttribute("alt", cardImgAlt);
   photoPopupCaption.textContent = cardCaption;
 
-  openPopup(photoPopup, "photo-popup_opened");
+  openPopup(photoPopup, "popup_opened");
 
   photoPopupCloseButton.addEventListener("click", () => {
-    closePopup(photoPopup, "photo-popup_opened");
+    closePopup(photoPopup, "popup_opened");
   });
 }
 
