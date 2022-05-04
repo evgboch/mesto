@@ -33,9 +33,6 @@ function closePopup(popup) {
 }
 
 function infoPopupOpenHandler() {
-  profilePopupTitle.textContent = "Редактировать профиль";
-  profileTopInput.setAttribute("placeholder", "Жак-Ив Кусто");
-  profileBottomInput.setAttribute("placeholder", "Исследователь океана");
   profileTopInput.value = profileTitle.textContent;
   profileBottomInput.value = profileSubtitle.textContent;
 
@@ -46,10 +43,6 @@ function infoPopupOpenHandler() {
 }
 
 function cardPopupOpenHandler() {
-  cardPopupTitle.textContent = "Новое место";
-  cardTopInput.setAttribute("placeholder", "Название");
-  cardBottomInput.setAttribute("placeholder", "Ссылка на картинку");
-
   openPopup(cardPopup);
 
   cardPopupCloseButton.addEventListener("click", cardPopupCloseHandler);
