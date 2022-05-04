@@ -37,16 +37,10 @@ function infoPopupOpenHandler() {
   profileBottomInput.value = profileSubtitle.textContent;
 
   openPopup(profilePopup);
-
-  profilePopupCloseButton.addEventListener("click", infoPopupCloseHandler);
-  profileFormElement.addEventListener('submit', infoFormSubmitHandler);
 }
 
 function cardPopupOpenHandler() {
   openPopup(cardPopup);
-
-  cardPopupCloseButton.addEventListener("click", cardPopupCloseHandler);
-  cardFormElement.addEventListener('submit', cardFormSubmitHandler);
 }
 
 function infoPopupCloseHandler() {
@@ -97,10 +91,6 @@ function pictureClickHandler(cardLink, cardCaption, cardImgAlt) {
   photoPopupCaption.textContent = cardCaption;
 
   openPopup(photoPopup);
-
-  photoPopupCloseButton.addEventListener("click", () => {
-    closePopup(photoPopup);
-  });
 }
 
 function generatePhotoCard(cardsElement) {
@@ -136,3 +126,10 @@ initialCards.forEach((cardsElement) => {
 
 profileEditButton.addEventListener("click", infoPopupOpenHandler);
 cardAddButton.addEventListener("click", cardPopupOpenHandler);
+profilePopupCloseButton.addEventListener("click", infoPopupCloseHandler);
+profileFormElement.addEventListener('submit', infoFormSubmitHandler);
+cardPopupCloseButton.addEventListener("click", cardPopupCloseHandler);
+cardFormElement.addEventListener('submit', cardFormSubmitHandler);
+photoPopupCloseButton.addEventListener("click", () => {
+  closePopup(photoPopup);
+});
