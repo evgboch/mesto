@@ -1,19 +1,18 @@
 const profilePopup = document.querySelector(".popup_profile");
 const profileFormElement = profilePopup.querySelector(".popup__container_profile");
-const profilePopupCloseButton = profileFormElement.querySelector(".popup__close-button_profile");
 const profileTopInput = profileFormElement.querySelector(".popup__input[name = nameField]");
 const profileBottomInput = profileFormElement.querySelector(".popup__input[name = descriptionField]");
 const profilePopupTitle = profileFormElement.querySelector(".popup__title_profile");
 
 const cardPopup = document.querySelector(".popup_card");
 const cardFormElement = cardPopup.querySelector(".popup__container_card");
-const cardPopupCloseButton = cardFormElement.querySelector(".popup__close-button_card");
 const cardTopInput = cardFormElement.querySelector(".popup__input[name = cardNameField]");
 const cardBottomInput = cardFormElement.querySelector(".popup__input[name = linkField]");
 const cardPopupTitle = cardFormElement.querySelector(".popup__title_card");
 
 const photoPopup = document.querySelector(".popup_photo");
-const photoPopupCloseButton = photoPopup.querySelector(".popup__close-button_photo");
+
+const closeButtons = document.querySelectorAll(".popup__close-button");
 
 const profile = document.querySelector(".profile");
 const profileTitle = profile.querySelector(".profile__title");
@@ -126,10 +125,19 @@ initialCards.forEach((cardsElement) => {
 
 profileEditButton.addEventListener("click", infoPopupOpenHandler);
 cardAddButton.addEventListener("click", cardPopupOpenHandler);
-profilePopupCloseButton.addEventListener("click", infoPopupCloseHandler);
 profileFormElement.addEventListener('submit', infoFormSubmitHandler);
-cardPopupCloseButton.addEventListener("click", cardPopupCloseHandler);
 cardFormElement.addEventListener('submit', cardFormSubmitHandler);
-photoPopupCloseButton.addEventListener("click", () => {
-  closePopup(photoPopup);
+closeButtons.forEach((closeButton) => {
+  switch (closeButton.className) {
+    case "popup__close-button popup__close-button_profile":
+      closeButton.addEventListener("click", infoPopupCloseHandler);
+      break;
+    case "popup__close-button popup__close-button_card":
+      closeButton.addEventListener("click", cardPopupCloseHandler);
+      break;
+    case "popup__close-button popup__close-button_photo":
+      closeButton.addEventListener("click", () => {
+        closePopup(photoPopup);
+      });
+  }
 });
