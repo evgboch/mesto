@@ -23,12 +23,31 @@ const cardAddButton = profile.querySelector(".profile__add-button");
 const photoCardsContainer = document.querySelector(".photo-cards__grid");
 const photoCardsTemplate = document.querySelector(".photo-cards-template").content.querySelector(".photo-cards__element");
 
+function popupCloseHandler() {
+  const popupOpened = document.querySelector(".popup_opened");
+  closePopup(popupOpened);
+}
+
+function addCloseButtonListener(popup) {
+  const popupCloseButton = popup.querySelector(".popup__close-button");
+  popupCloseButton.addEventListener("click", popupCloseHandler);
+}
+
+function removeCloseButtonListener(popup) {
+  const popupCloseButton = popup.querySelector(".popup__close-button");
+  popupCloseButton.removeEventListener("click", popupCloseHandler);
+}
+
 function openPopup(popup) {
   popup.classList.add("popup_opened");
+
+  addCloseButtonListener(popup);
 }
 
 function closePopup(popup) {
   popup.classList.remove("popup_opened");
+
+  removeCloseButtonListener(popup);
 }
 
 function infoPopupOpenHandler() {
@@ -39,21 +58,10 @@ function infoPopupOpenHandler() {
 }
 
 function cardPopupOpenHandler() {
-  openPopup(cardPopup);
-}
-
-function infoPopupCloseHandler() {
-  profileTopInput.value = "";
-  profileBottomInput.value = "";
-
-  closePopup(profilePopup);
-}
-
-function cardPopupCloseHandler() {
   cardTopInput.value = "";
   cardBottomInput.value = "";
 
-  closePopup(cardPopup);
+  openPopup(cardPopup);
 }
 
 function infoFormSubmitHandler(evt) {
@@ -62,7 +70,7 @@ function infoFormSubmitHandler(evt) {
   profileTitle.textContent = profileTopInput.value;
   profileSubtitle.textContent = profileBottomInput.value;
 
-  infoPopupCloseHandler();
+  popupCloseHandler();
 }
 
 function cardFormSubmitHandler(evt) {
@@ -70,7 +78,7 @@ function cardFormSubmitHandler(evt) {
 
   renderPhotoCard({ name: cardTopInput.value, link: cardBottomInput.value, alt: cardTopInput.value });
 
-  cardPopupCloseHandler();
+  popupCloseHandler();
 }
 
 function likeButtonHandler(evt) {
@@ -127,17 +135,3 @@ profileEditButton.addEventListener("click", infoPopupOpenHandler);
 cardAddButton.addEventListener("click", cardPopupOpenHandler);
 profileFormElement.addEventListener('submit', infoFormSubmitHandler);
 cardFormElement.addEventListener('submit', cardFormSubmitHandler);
-closeButtons.forEach((closeButton) => {
-  switch (closeButton.className) {
-    case "popup__close-button popup__close-button_profile":
-      closeButton.addEventListener("click", infoPopupCloseHandler);
-      break;
-    case "popup__close-button popup__close-button_card":
-      closeButton.addEventListener("click", cardPopupCloseHandler);
-      break;
-    case "popup__close-button popup__close-button_photo":
-      closeButton.addEventListener("click", () => {
-        closePopup(photoPopup);
-      });
-  }
-});
