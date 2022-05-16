@@ -3,7 +3,8 @@
   padding-left: 0;
   padding-right: 0;
   padding-bottom: 9px;
-  margin-bottom: 30px;
+  /* margin-bottom: 30px; */
+  width: 100%;
   border-top: none;
   border-right: none;
   border-left: none;
@@ -15,8 +16,8 @@
   box-sizing: border-box;
 }
 
-.popup__input:last-of-type {
+/* .popup__input:last-of-type {
   margin-bottom: 0;
-}
+} */
 
 

@@ -12,7 +12,7 @@ const cardPopupTitle = cardFormElement.querySelector(".popup__title_card");
 
 const photoPopup = document.querySelector(".popup_photo");
 
-const closeButtons = document.querySelectorAll(".popup__close-button");
+// const closeButtons = document.querySelectorAll(".popup__close-button");
 
 const profile = document.querySelector(".profile");
 const profileTitle = profile.querySelector(".profile__title");
