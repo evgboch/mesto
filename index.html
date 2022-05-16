@@ -41,11 +41,11 @@
       <h2 class="popup__title popup__title_profile">Редактировать профиль</h2>
       <label class="popup__field">
         <input id="name" class="popup__input popup__input_type_name" type="text" name="nameField" placeholder="Жак-Ив Кусто" required minlength="2" maxlength="40">
-        <span id="name-error" class="popup__error">Вы пропустили это поле.</span>
+        <span id="name-error" class="popup__error"></span>
       </label>
       <label class="popup__field">
         <input id="description" class="popup__input popup__input_type_description" type="text" name="descriptionField" placeholder="Исследователь океана" required minlength="2" maxlength="400">
-        <span id="description-error" class="popup__error">Вы пропустили это поле.</span>
+        <span id="description-error" class="popup__error"></span>
       </label>
       <button class="popup__submit-button popup__submit-button_profile" type="submit">Сохранить</button>
       <button class="popup__close-button popup__close-button_profile" type="button"></button>
@@ -56,11 +56,11 @@
       <h2 class="popup__title popup__title_card">Новое место</h2>
       <label class="popup__field">
         <input id="card-name" class="popup__input popup__input_type_card-name" type="text" name="cardNameField" placeholder="Название" required minlength="2" maxlength="30">
-        <span id="card-name-error" class="popup__error">123</span>
+        <span id="card-name-error" class="popup__error"></span>
       </label>
       <label class="popup__field">
         <input id="link" class="popup__input popup__input_type_link" type="url" name="linkField" placeholder="Ссылка на картинку" required>
-        <span id="link-error" class="popup__error">456</span>
+        <span id="link-error" class="popup__error"></span>
       </label>
       <button class="popup__submit-button popup__submit-button_card" type="submit">Создать</button>
       <button class="popup__close-button popup__close-button_card" type="button"></button>
@@ -86,7 +86,7 @@
   </template>
 
   <script src="./scripts/cards.js"></script>
-  <script src="./scripts/index.js"></script>
   <script src="./scripts/validate.js"></script>
+  <script src="./scripts/index.js"></script>
 </body>
 </html>

@@ -12,8 +12,6 @@ const cardPopupTitle = cardFormElement.querySelector(".popup__title_card");
 
 const photoPopup = document.querySelector(".popup_photo");
 
-// const closeButtons = document.querySelectorAll(".popup__close-button");
-
 const profile = document.querySelector(".profile");
 const profileTitle = profile.querySelector(".profile__title");
 const profileSubtitle = profile.querySelector(".profile__subtitle");
@@ -50,10 +48,18 @@ function closePopup(popup) {
   removeCloseButtonListener(popup);
 }
 
+function toggleSubmitBtnWithoutInputEvent(formElement) {
+  const inputList = Array.from(formElement.querySelectorAll(".popup__input"));
+  const submitButton = formElement.querySelector(".popup__submit-button");
+
+  toggleSubmitButtonState(inputList, submitButton, {inactiveButtonClass: 'popup__submit-button_disabled'});
+}
+
 function infoPopupOpenHandler() {
   profileTopInput.value = profileTitle.textContent;
   profileBottomInput.value = profileSubtitle.textContent;
 
+  toggleSubmitBtnWithoutInputEvent(profileFormElement);
   openPopup(profilePopup);
 }
 
@@ -61,6 +67,7 @@ function cardPopupOpenHandler() {
   cardTopInput.value = "";
   cardBottomInput.value = "";
 
+  toggleSubmitBtnWithoutInputEvent(cardFormElement);
   openPopup(cardPopup);
 }
 
@@ -135,3 +142,12 @@ profileEditButton.addEventListener("click", infoPopupOpenHandler);
 cardAddButton.addEventListener("click", cardPopupOpenHandler);
 profileFormElement.addEventListener('submit', infoFormSubmitHandler);
 cardFormElement.addEventListener('submit', cardFormSubmitHandler);
+
+enableValidation({
+  formSelector: '.popup__container',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__submit-button',
+  inactiveButtonClass: 'popup__submit-button_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__error_visible'
+});

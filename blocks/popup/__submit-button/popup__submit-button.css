@@ -20,7 +20,7 @@
   transition: opacity 0.2s linear;
 }
 
-.popup__submit-button:hover {
+.popup__submit-button:hover:enabled {
   opacity: 0.8;
 }
 
