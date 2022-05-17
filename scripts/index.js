@@ -25,12 +25,6 @@ const photoCardsTemplate = document.querySelector(".photo-cards-template").conte
 
 function closeOpenedPopup() {
   const popupOpened = document.querySelector(".popup_opened");
-  if (popupOpened.classList.contains("popup_card")) {
-    const inputList = Array.from(popupOpened.querySelectorAll(".popup__input"));
-    inputList.forEach((inputElement) => {
-      hideInputError(cardFormElement, inputElement, {inputErrorClass: 'popup__input_type_error', errorClass: 'popup__error_visible'});
-    });
-  }
   closePopup(popupOpened);
 }
 
@@ -42,7 +36,6 @@ function handleEscape(evt) {
 
 function handlePopupOverlayClick(evt) {
   if (evt.target === evt.currentTarget) {
-    // closeOpenedPopup();
     closePopup(evt.currentTarget);
   }
 }
@@ -82,19 +75,24 @@ function toggleSubmitBtnWithoutInputEvent(formElement) {
   toggleSubmitButtonState(inputList, submitButton, {inactiveButtonClass: 'popup__submit-button_disabled'});
 }
 
+function clearFormErrors(popupOpened, formElement) {
+  const inputList = Array.from(popupOpened.querySelectorAll(".popup__input"));
+  inputList.forEach((inputElement) => {
+    hideInputError(formElement, inputElement, {inputErrorClass: 'popup__input_type_error', errorClass: 'popup__error_visible'});
+  });
+}
+
 function openProfilePopup() {
   profileTopInput.value = profileTitle.textContent;
   profileBottomInput.value = profileSubtitle.textContent;
-
+  clearFormErrors(profilePopup, profileFormElement);
   toggleSubmitBtnWithoutInputEvent(profileFormElement);
   openPopup(profilePopup);
 }
 
 function openCardPopup() {
-  // cardTopInput.value = "";
-  // cardBottomInput.value = "";
   cardFormElement.reset();
-
+  clearFormErrors(cardPopup, cardFormElement);
   toggleSubmitBtnWithoutInputEvent(cardFormElement);
   openPopup(cardPopup);
 }
@@ -125,9 +123,6 @@ function handleDeleteButton(evt) {
 }
 
 function handlePictureClick(cardLink, cardCaption, cardImgAlt) {
-  // const photoPopupImage = photoPopup.querySelector(".popup__image");
-  // const photoPopupCaption = photoPopup.querySelector(".popup__image-caption");
-
   photoPopupImage.setAttribute("src", cardLink);
   photoPopupImage.setAttribute("alt", cardImgAlt);
   photoPopupCaption.textContent = cardCaption;
