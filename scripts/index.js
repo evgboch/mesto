@@ -23,6 +23,12 @@ const photoCardsTemplate = document.querySelector(".photo-cards-template").conte
 
 function popupCloseHandler() {
   const popupOpened = document.querySelector(".popup_opened");
+  if (popupOpened.classList.contains("popup_card")) {
+    const inputList = Array.from(popupOpened.querySelectorAll(".popup__input"));
+    inputList.forEach((inputElement) => {
+      hideInputError(cardFormElement, inputElement, {inputErrorClass: 'popup__input_type_error', errorClass: 'popup__error_visible'});
+    });
+  }
   closePopup(popupOpened);
 }
 
