@@ -32,26 +32,44 @@ function popupCloseHandler() {
   closePopup(popupOpened);
 }
 
-function addCloseButtonListener(popup) {
-  const popupCloseButton = popup.querySelector(".popup__close-button");
-  popupCloseButton.addEventListener("click", popupCloseHandler);
+function popupEscapeHandler(evt) {
+  if (evt.key === "Escape") {
+    popupCloseHandler();
+  }
 }
 
-function removeCloseButtonListener(popup) {
+function popupOverlayClickHandler(evt) {
+  if (evt.target === evt.currentTarget) {
+    popupCloseHandler();
+  }
+}
+
+function addCloseListeners(popup) {
   const popupCloseButton = popup.querySelector(".popup__close-button");
+
+  popupCloseButton.addEventListener("click", popupCloseHandler);
+  document.addEventListener("keydown", popupEscapeHandler);
+  popup.addEventListener("click", popupOverlayClickHandler);
+}
+
+function removeCloseListeners(popup) {
+  const popupCloseButton = popup.querySelector(".popup__close-button");
+
   popupCloseButton.removeEventListener("click", popupCloseHandler);
+  document.removeEventListener("keydown", popupEscapeHandler);
+  popup.removeEventListener("click", popupOverlayClickHandler);
 }
 
 function openPopup(popup) {
   popup.classList.add("popup_opened");
 
-  addCloseButtonListener(popup);
+  addCloseListeners(popup);
 }
 
 function closePopup(popup) {
   popup.classList.remove("popup_opened");
 
-  removeCloseButtonListener(popup);
+  removeCloseListeners(popup);
 }
 
 function toggleSubmitBtnWithoutInputEvent(formElement) {
