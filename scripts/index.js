@@ -11,6 +11,8 @@ const cardBottomInput = cardFormElement.querySelector(".popup__input[name = link
 const cardPopupTitle = cardFormElement.querySelector(".popup__title_card");
 
 const photoPopup = document.querySelector(".popup_photo");
+const photoPopupImage = photoPopup.querySelector(".popup__image");
+const photoPopupCaption = photoPopup.querySelector(".popup__image-caption");
 
 const profile = document.querySelector(".profile");
 const profileTitle = profile.querySelector(".profile__title");
@@ -123,8 +125,8 @@ function handleDeleteButton(evt) {
 }
 
 function handlePictureClick(cardLink, cardCaption, cardImgAlt) {
-  const photoPopupImage = photoPopup.querySelector(".popup__image");
-  const photoPopupCaption = photoPopup.querySelector(".popup__image-caption");
+  // const photoPopupImage = photoPopup.querySelector(".popup__image");
+  // const photoPopupCaption = photoPopup.querySelector(".popup__image-caption");
 
   photoPopupImage.setAttribute("src", cardLink);
   photoPopupImage.setAttribute("alt", cardImgAlt);
