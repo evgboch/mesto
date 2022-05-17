@@ -88,8 +88,9 @@ function openProfilePopup() {
 }
 
 function openCardPopup() {
-  cardTopInput.value = "";
-  cardBottomInput.value = "";
+  // cardTopInput.value = "";
+  // cardBottomInput.value = "";
+  cardFormElement.reset();
 
   toggleSubmitBtnWithoutInputEvent(cardFormElement);
   openPopup(cardPopup);
