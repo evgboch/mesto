@@ -113,7 +113,7 @@ function handleCardFormSubmition(evt) {
 }
 
 function handleLikeButton(evt) {
-  evt.target.closest(".photo-cards__like-button").classList.toggle("photo-cards__like-button_active");
+  evt.target.classList.toggle("photo-cards__like-button_active");
 }
 
 function handleDeleteButton(evt) {
