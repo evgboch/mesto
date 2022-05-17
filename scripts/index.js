@@ -40,7 +40,8 @@ function handleEscape(evt) {
 
 function handlePopupOverlayClick(evt) {
   if (evt.target === evt.currentTarget) {
-    closeOpenedPopup();
+    // closeOpenedPopup();
+    closePopup(evt.currentTarget);
   }
 }
 
