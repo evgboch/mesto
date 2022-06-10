@@ -1,13 +1,12 @@
 import { openPopup } from "./index.js";
 
 export class Card {
-  constructor (name, link, alt, templateSelector) {
-    this._name = name;
-    this._link = link;
-    this._alt = alt;
+  constructor (cardsData, templateSelector) {
+    this._name = cardsData.name;
+    this._link = cardsData.link;
+    this._alt = cardsData.alt;
     this._templateSelector = templateSelector;
   }
-
 
   _handleLikeButton(evt) {
     evt.target.classList.toggle("photo-cards__like-button_active");
@@ -21,6 +20,7 @@ export class Card {
     const photoPopup = document.querySelector(".popup_photo");
     const photoPopupImage = photoPopup.querySelector(".popup__image");
     const photoPopupCaption = photoPopup.querySelector(".popup__image-caption");
+
     photoPopupImage.setAttribute("src", cardLink);
     photoPopupImage.setAttribute("alt", cardImgAlt);
     photoPopupCaption.textContent = cardCaption;
