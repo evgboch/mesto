@@ -1,11 +1,19 @@
 import { openPopup } from "./utils.js";
 
+const photoPopup = document.querySelector(".popup_photo");
+const photoPopupImage = photoPopup.querySelector(".popup__image");
+const photoPopupCaption = photoPopup.querySelector(".popup__image-caption");
+
 export class Card {
   constructor (cardsData, templateSelector) {
     this._name = cardsData.name;
     this._link = cardsData.link;
     this._alt = cardsData.alt;
-    this._templateSelector = templateSelector;
+    this._newPhotoCard = document.querySelector(templateSelector).content.querySelector(".photo-cards__element").cloneNode(true);
+    this._photoCardTitle = this._newPhotoCard.querySelector(".photo-cards__title");
+    this._photoCardPicture = this._newPhotoCard.querySelector(".photo-cards__picture");
+    this._likeButton = this._newPhotoCard.querySelector(".photo-cards__like-button");
+    this._deleteButton = this._newPhotoCard.querySelector(".photo-cards__delete-button");
   }
 
   _handleLikeButton(evt) {
@@ -17,10 +25,6 @@ export class Card {
   }
 
   _handlePictureClick(cardLink, cardCaption, cardImgAlt) {
-    const photoPopup = document.querySelector(".popup_photo");
-    const photoPopupImage = photoPopup.querySelector(".popup__image");
-    const photoPopupCaption = photoPopup.querySelector(".popup__image-caption");
-
     photoPopupImage.setAttribute("src", cardLink);
     photoPopupImage.setAttribute("alt", cardImgAlt);
     photoPopupCaption.textContent = cardCaption;
@@ -30,26 +34,16 @@ export class Card {
 
 
   generatePhotoCard() {
-    const photoCardsTemplate = document.querySelector(this._templateSelector).content.querySelector(".photo-cards__element");
-    const newPhotoCard = photoCardsTemplate.cloneNode(true);
+    this._photoCardTitle.textContent = this._name;
+    this._photoCardPicture.setAttribute("src", this._link);
+    this._photoCardPicture.setAttribute("alt", this._alt);
 
-    const photoCardTitle = newPhotoCard.querySelector(".photo-cards__title");
-    photoCardTitle.textContent = this._name;
-
-    const photoCardPicture = newPhotoCard.querySelector(".photo-cards__picture");
-    photoCardPicture.setAttribute("src", this._link);
-    photoCardPicture.setAttribute("alt", this._alt);
-
-    photoCardPicture.addEventListener("click", () => {
+    this._photoCardPicture.addEventListener("click", () => {
       this._handlePictureClick(this._link, this._name, this._alt);
     });
+    this._likeButton.addEventListener("click", this._handleLikeButton);
+    this._deleteButton.addEventListener("click", this._handleDeleteButton);
 
-    const likeButton = newPhotoCard.querySelector(".photo-cards__like-button");
-    likeButton.addEventListener("click", this._handleLikeButton);
-
-    const deleteButton = newPhotoCard.querySelector(".photo-cards__delete-button");
-    deleteButton.addEventListener("click", this._handleDeleteButton);
-
-    return newPhotoCard;
+    return this._newPhotoCard;
   }
 }
