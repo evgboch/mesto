@@ -31,8 +31,8 @@ const validationData = {
   errorClass: 'popup__error_visible'
 };
 
-const profileFormValidator = new FormValidator(validationData, ".popup__container_profile");
-const cardFormValidator = new FormValidator(validationData, ".popup__container_card");
+const profileFormValidator = new FormValidator(validationData, profileFormElement);
+const cardFormValidator = new FormValidator(validationData, cardFormElement);
 
 function openProfilePopup() {
   profileTopInput.value = profileTitle.textContent;
