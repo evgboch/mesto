@@ -66,14 +66,17 @@ function handleCardFormSubmition(evt) {
   closePopup(cardPopup);
 }
 
-function renderPhotoCard(cardsData) {
-  const cardsElement = new Card(cardsData, ".photo-cards-template");
-  photoCardsContainer.prepend(cardsElement.generatePhotoCard());
+function createCard(cardData) {
+  const cardsInstance = new Card(cardData, ".photo-cards-template");
+  return cardsInstance.generatePhotoCard();
 }
 
-initialCards.forEach((cardsData) => {
-  renderPhotoCard(cardsData);
-});
+function renderPhotoCard(cardData) {
+  const cardsElement = createCard(cardData);
+  photoCardsContainer.prepend(cardsElement);
+}
+
+initialCards.forEach(renderPhotoCard);
 
 profileEditButton.addEventListener("click", openProfilePopup);
 cardAddButton.addEventListener("click", openCardPopup);
