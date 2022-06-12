@@ -32,17 +32,20 @@ export class Card {
     openPopup(photoPopup);
   }
 
+  _setEventListeners() {
+    this._photoCardPicture.addEventListener("click", () => {
+      this._handlePictureClick(this._link, this._name, this._alt);
+    });
+    this._likeButton.addEventListener("click", this._handleLikeButton);
+    this._deleteButton.addEventListener("click", this._handleDeleteButton);
+  }
 
   generatePhotoCard() {
     this._photoCardTitle.textContent = this._name;
     this._photoCardPicture.setAttribute("src", this._link);
     this._photoCardPicture.setAttribute("alt", this._alt);
 
-    this._photoCardPicture.addEventListener("click", () => {
-      this._handlePictureClick(this._link, this._name, this._alt);
-    });
-    this._likeButton.addEventListener("click", this._handleLikeButton);
-    this._deleteButton.addEventListener("click", this._handleDeleteButton);
+    this._setEventListeners();
 
     return this._newPhotoCard;
   }
