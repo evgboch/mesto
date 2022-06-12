@@ -21,6 +21,10 @@ const profileSubtitle = profile.querySelector(".profile__subtitle");
 const profileEditButton = profile.querySelector(".profile__edit-button");
 const cardAddButton = profile.querySelector(".profile__add-button");
 
+const photoPopup = document.querySelector(".popup_photo");
+const photoPopupImage = photoPopup.querySelector(".popup__image");
+const photoPopupCaption = photoPopup.querySelector(".popup__image-caption");
+
 const photoCardsContainer = document.querySelector(".photo-cards__grid");
 
 const validationData = {
@@ -33,6 +37,14 @@ const validationData = {
 
 const profileFormValidator = new FormValidator(validationData, profileFormElement);
 const cardFormValidator = new FormValidator(validationData, cardFormElement);
+
+function handlePictureClick(link, name, alt) {
+  photoPopupImage.setAttribute("src", link);
+  photoPopupImage.setAttribute("alt", alt);
+  photoPopupCaption.textContent = name;
+
+  openPopup(photoPopup);
+}
 
 function openProfilePopup() {
   profileTopInput.value = profileTitle.textContent;
@@ -67,7 +79,7 @@ function handleCardFormSubmition(evt) {
 }
 
 function createCard(cardData) {
-  const cardsInstance = new Card(cardData, ".photo-cards-template");
+  const cardsInstance = new Card(cardData, ".photo-cards-template", handlePictureClick);
   return cardsInstance.generatePhotoCard();
 }
 

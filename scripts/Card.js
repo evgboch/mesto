@@ -1,14 +1,9 @@
-import { openPopup } from "./utils.js";
-
-const photoPopup = document.querySelector(".popup_photo");
-const photoPopupImage = photoPopup.querySelector(".popup__image");
-const photoPopupCaption = photoPopup.querySelector(".popup__image-caption");
-
 export class Card {
-  constructor (cardsData, templateSelector) {
+  constructor (cardsData, templateSelector, handlePictureClick) {
     this._name = cardsData.name;
     this._link = cardsData.link;
     this._alt = cardsData.alt;
+    this._handlePictureClick = handlePictureClick;
     this._newPhotoCard = document.querySelector(templateSelector).content.querySelector(".photo-cards__element").cloneNode(true);
     this._photoCardTitle = this._newPhotoCard.querySelector(".photo-cards__title");
     this._photoCardPicture = this._newPhotoCard.querySelector(".photo-cards__picture");
@@ -22,14 +17,6 @@ export class Card {
 
   _handleDeleteButton(evt) {
     evt.target.closest(".photo-cards__element").remove();
-  }
-
-  _handlePictureClick(cardLink, cardCaption, cardImgAlt) {
-    photoPopupImage.setAttribute("src", cardLink);
-    photoPopupImage.setAttribute("alt", cardImgAlt);
-    photoPopupCaption.textContent = cardCaption;
-
-    openPopup(photoPopup);
   }
 
   _setEventListeners() {
