@@ -1,7 +1,7 @@
 import { initialCards } from "./cardsData.js";
 import { Card } from "./Card.js";
 import { FormValidator } from "./FormValidator.js";
-import { openPopup, closePopup } from "./utils.js";
+// import { openPopup, closePopup } from "./utils.js";
 
 const profilePopup = document.querySelector(".popup_profile");
 const profileFormElement = profilePopup.querySelector(".popup__container_profile");
@@ -21,9 +21,9 @@ const profileSubtitle = profile.querySelector(".profile__subtitle");
 const profileEditButton = profile.querySelector(".profile__edit-button");
 const cardAddButton = profile.querySelector(".profile__add-button");
 
-const photoPopup = document.querySelector(".popup_photo");
-const photoPopupImage = photoPopup.querySelector(".popup__image");
-const photoPopupCaption = photoPopup.querySelector(".popup__image-caption");
+// const photoPopup = document.querySelector(".popup_photo");
+// const photoPopupImage = photoPopup.querySelector(".popup__image");
+// const photoPopupCaption = photoPopup.querySelector(".popup__image-caption");
 
 const photoCardsContainer = document.querySelector(".photo-cards__grid");
 
@@ -49,13 +49,13 @@ function enableValidation(validationParams) {
   });
 }
 
-function handlePictureClick(link, name, alt) {
-  photoPopupImage.setAttribute("src", link);
-  photoPopupImage.setAttribute("alt", alt);
-  photoPopupCaption.textContent = name;
+// function handlePictureClick(link, name, alt) {
+//   photoPopupImage.setAttribute("src", link);
+//   photoPopupImage.setAttribute("alt", alt);
+//   photoPopupCaption.textContent = name;
 
-  openPopup(photoPopup);
-}
+//   openPopup(photoPopup);
+// }
 
 function openProfilePopup() {
   profileTopInput.value = profileTitle.textContent;

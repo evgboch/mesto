@@ -10,7 +10,7 @@ class Popup {
 
   _handleEscClose(evt) {
     if (evt.key === "Escape") {
-      _closeOpenedPopup();
+      this._closeOpenedPopup();
     }
   }
 
