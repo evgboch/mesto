@@ -13,7 +13,7 @@ const cardFormElement = cardPopup.querySelector(".popup__container_card");
 const cardTopInput = cardFormElement.querySelector(".popup__input[name = cardNameField]");
 const cardBottomInput = cardFormElement.querySelector(".popup__input[name = linkField]");
 
-const popupList = document.querySelectorAll('.popup')
+// const popupList = document.querySelectorAll('.popup');
 
 const profile = document.querySelector(".profile");
 const profileTitle = profile.querySelector(".profile__title");
@@ -36,7 +36,7 @@ const validationData = {
   errorClass: "popup__error_visible"
 };
 
-const formValidators = {}
+const formValidators = {};
 
 function enableValidation(validationParams) {
   const formList = Array.from(document.querySelectorAll(validationParams.formSelector));
@@ -106,15 +106,15 @@ cardAddButton.addEventListener("click", openCardPopup);
 profileFormElement.addEventListener('submit', handleProfileFormSubmition);
 cardFormElement.addEventListener('submit', handleCardFormSubmition);
 
-popupList.forEach((popup) => {
-  popup.addEventListener("mousedown", (evt) => {
-      if (evt.target.classList.contains("popup_opened")) {
-        closePopup(popup)
-      }
-      if (evt.target.classList.contains("popup__close-button")) {
-        closePopup(popup)
-      }
-  });
-});
+// popupList.forEach((popup) => {
+//   popup.addEventListener("mousedown", (evt) => {
+//       if (evt.target.classList.contains("popup_opened")) {
+//         closePopup(popup)
+//       }
+//       if (evt.target.classList.contains("popup__close-button")) {
+//         closePopup(popup)
+//       }
+//   });
+// });
 
 enableValidation(validationData);
