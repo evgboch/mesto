@@ -66,7 +66,7 @@ function openProfilePopup() {
 }
 
 function openCardPopup() {
-  cardFormElement.reset();
+  // cardFormElement.reset();
 
   formValidators["popupCardForm"].resetValidation();
   openPopup(cardPopup);
@@ -103,8 +103,8 @@ initialCards.forEach(renderPhotoCard);
 
 profileEditButton.addEventListener("click", openProfilePopup);
 cardAddButton.addEventListener("click", openCardPopup);
-profileFormElement.addEventListener('submit', handleProfileFormSubmition);
-cardFormElement.addEventListener('submit', handleCardFormSubmition);
+// profileFormElement.addEventListener('submit', handleProfileFormSubmition);
+// cardFormElement.addEventListener('submit', handleCardFormSubmition);
 
 // popupList.forEach((popup) => {
 //   popup.addEventListener("mousedown", (evt) => {
