@@ -1,6 +1,10 @@
 import { initialCards } from "./cardsData.js";
 import { Card } from "./Card.js";
 import { FormValidator } from "./FormValidator.js";
+import { PopupWithForm } from "./PopupWithForm.js";
+import { PopupWithImage } from "./PopupWithImage.js";
+import { Section } from "./Section.js";
+import { UserInfo } from "./UserInfo.js";
 // import { openPopup, closePopup } from "./utils.js";
 
 const profilePopup = document.querySelector(".popup_profile");
@@ -89,8 +93,18 @@ function handleCardFormSubmition(evt) {
   closePopup(cardPopup);
 }
 
+// function createCard(cardData) {
+//   const cardsInstance = new Card(cardData, ".photo-cards-template", handlePictureClick);
+//   return cardsInstance.generatePhotoCard();
+// }
+
+function handleCardClick(link, name, alt) {
+  const imagePopupInstance = new PopupWithImage(".popup_photo");
+  imagePopupInstance.open(link, name, alt);
+}
+
 function createCard(cardData) {
-  const cardsInstance = new Card(cardData, ".photo-cards-template", handlePictureClick);
+  const cardsInstance = new Card(cardData, ".photo-cards-template", handleCardClick);
   return cardsInstance.generatePhotoCard();
 }
 
