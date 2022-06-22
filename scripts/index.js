@@ -101,6 +101,7 @@ function handleCardFormSubmition(evt) {
 function handleCardClick(link, name, alt) {
   const imagePopupInstance = new PopupWithImage(".popup_photo");
   imagePopupInstance.open(link, name, alt);
+  imagePopupInstance.setEventListeners();
 }
 
 function createCard(cardData) {
