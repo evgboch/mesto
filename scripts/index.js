@@ -29,7 +29,7 @@ const cardAddButton = profile.querySelector(".profile__add-button");
 // const photoPopupImage = photoPopup.querySelector(".popup__image");
 // const photoPopupCaption = photoPopup.querySelector(".popup__image-caption");
 
-const photoCardsContainer = document.querySelector(".photo-cards__grid");
+// const photoCardsContainer = document.querySelector(".photo-cards__grid");
 
 const validationData = {
   formSelector: ".popup__container",
@@ -108,12 +108,19 @@ function createCard(cardData) {
   return cardsInstance.generatePhotoCard();
 }
 
-function renderPhotoCard(cardData) {
-  const cardsElement = createCard(cardData);
-  photoCardsContainer.prepend(cardsElement);
-}
+// function renderPhotoCard(cardData) {
+//   const cardsElement = createCard(cardData);
+//   photoCardsContainer.prepend(cardsElement);
+// }
 
-initialCards.forEach(renderPhotoCard);
+const sectionInstance = new Section({items: initialCards, renderer: (item) => {
+  const cardsElement = createCard(item);
+  sectionInstance.addItem(cardsElement);
+}}, ".photo-cards__grid");
+
+sectionInstance.renderSection();
+
+// initialCards.forEach(renderPhotoCard);
 
 profileEditButton.addEventListener("click", openProfilePopup);
 cardAddButton.addEventListener("click", openCardPopup);
