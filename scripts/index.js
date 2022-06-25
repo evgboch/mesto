@@ -61,29 +61,29 @@ function enableValidation(validationParams) {
 //   openPopup(photoPopup);
 // }
 
-function openProfilePopup() {
-  profileTopInput.value = profileTitle.textContent;
-  profileBottomInput.value = profileSubtitle.textContent;
+// function openProfilePopup() {
+//   profileTopInput.value = profileTitle.textContent;
+//   profileBottomInput.value = profileSubtitle.textContent;
 
-  formValidators["popupProfileForm"].resetValidation();
-  openPopup(profilePopup);
-}
+//   formValidators["popupProfileForm"].resetValidation();
+//   openPopup(profilePopup);
+// }
 
-function openCardPopup() {
-  // cardFormElement.reset();
+// function openCardPopup() {
+//   // cardFormElement.reset();
 
-  formValidators["popupCardForm"].resetValidation();
-  openPopup(cardPopup);
-}
+//   formValidators["popupCardForm"].resetValidation();
+//   openPopup(cardPopup);
+// }
 
-function handleProfileFormSubmition(evt) {
-  evt.preventDefault();
+// function handleProfileFormSubmition(evt) {
+//   evt.preventDefault();
 
-  profileTitle.textContent = profileTopInput.value;
-  profileSubtitle.textContent = profileBottomInput.value;
+//   profileTitle.textContent = profileTopInput.value;
+//   profileSubtitle.textContent = profileBottomInput.value;
 
-  closePopup(profilePopup);
-}
+//   closePopup(profilePopup);
+// }
 
 function handleCardFormSubmition(evt) {
   evt.preventDefault();
@@ -114,14 +114,56 @@ function createCard(cardData) {
 //   photoCardsContainer.prepend(cardsElement);
 // }
 
-const sectionInstance = new Section({items: initialCards, renderer: (item) => {
-  const cardsElement = createCard(item);
-  sectionInstance.addItem(cardsElement);
+const sectionInstance = new Section({
+  items: initialCards,
+  renderer: (item) => {
+    const cardsElement = createCard(item);
+    sectionInstance.addItem(cardsElement);
 }}, ".photo-cards__grid");
 
 sectionInstance.renderSection();
 
 // initialCards.forEach(renderPhotoCard);
+
+function handleProfileFormSubmition(evt) {
+  evt.preventDefault();
+
+  profileTitle.textContent = profileTopInput.value;
+  profileSubtitle.textContent = profileBottomInput.value;
+
+  closePopup(profilePopup);
+}
+
+const userInfoInstance = new UserInfo({
+  profileTitleSelector: ".profile__title",
+  profileSubtitleSelector: ".profile__subtitle"
+});
+
+function openProfilePopup() {
+  const userInfo = userInfoInstance.getUserInfo();
+  const formPopupInstance = new PopupWithForm({
+    popupSelector: ".popup_profile",
+    handleFormSubmition: (formData) => {
+      userInfoInstance.setUserInfo({
+        name: formData.nameField,
+        description: formData.descriptionField
+      });
+      formPopupInstance.close();
+    }
+  });
+
+  formPopupInstance.open(userInfo);
+  formPopupInstance.setEventListeners();
+
+  formValidators["popupProfileForm"].resetValidation();
+}
+
+function openCardPopup() {
+  // cardFormElement.reset();
+
+  formValidators["popupCardForm"].resetValidation();
+  openPopup(cardPopup);
+}
 
 profileEditButton.addEventListener("click", openProfilePopup);
 cardAddButton.addEventListener("click", openCardPopup);
