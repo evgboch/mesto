@@ -85,22 +85,22 @@ function enableValidation(validationParams) {
 //   closePopup(profilePopup);
 // }
 
-function handleCardFormSubmition(evt) {
-  evt.preventDefault();
+// function handleCardFormSubmition(evt) {
+//   evt.preventDefault();
 
-  renderPhotoCard({ name: cardTopInput.value, link: cardBottomInput.value, alt: cardTopInput.value });
+//   renderPhotoCard({ name: cardTopInput.value, link: cardBottomInput.value });
 
-  closePopup(cardPopup);
-}
+//   closePopup(cardPopup);
+// }
 
 // function createCard(cardData) {
 //   const cardsInstance = new Card(cardData, ".photo-cards-template", handlePictureClick);
 //   return cardsInstance.generatePhotoCard();
 // }
 
-function handleCardClick(link, name, alt) {
+function handleCardClick(link, name) {
   const imagePopupInstance = new PopupWithImage(".popup_photo");
-  imagePopupInstance.open(link, name, alt);
+  imagePopupInstance.open(link, name);
   imagePopupInstance.setEventListeners();
 }
 
@@ -124,15 +124,6 @@ const sectionInstance = new Section({
 sectionInstance.renderSection();
 
 // initialCards.forEach(renderPhotoCard);
-
-function handleProfileFormSubmition(evt) {
-  evt.preventDefault();
-
-  profileTitle.textContent = profileTopInput.value;
-  profileSubtitle.textContent = profileBottomInput.value;
-
-  closePopup(profilePopup);
-}
 
 const userInfoInstance = new UserInfo({
   profileTitleSelector: ".profile__title",
@@ -159,10 +150,24 @@ function openProfilePopup() {
 }
 
 function openCardPopup() {
+  const clearValues = {
+    name: "",
+    link: ""
+  }
+  const cardPopupInstance = new PopupWithForm({
+    popupSelector: ".popup_card",
+    handleFormSubmition: (item) => {
+      sectionInstance.renderer(item);
+      cardPopupInstance.close();
+    }
+  });
+  cardPopupInstance.open(clearValues);
+  cardPopupInstance.setEventListeners();
+
   // cardFormElement.reset();
 
   formValidators["popupCardForm"].resetValidation();
-  openPopup(cardPopup);
+  // openPopup(cardPopup);
 }
 
 profileEditButton.addEventListener("click", openProfilePopup);
