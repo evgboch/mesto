@@ -53,7 +53,7 @@ function openProfilePopup() {
 
 function openCardPopup() {
   const clearValues = {
-    name: "",
+    place: "",
     link: ""
   }
   cardPopupInstance.open(clearValues);
