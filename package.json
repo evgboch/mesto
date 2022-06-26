@@ -1,7 +1,7 @@
 {
   "name": "mesto",
-  "version": "0.0.1",
-  "description": "--- Привет! Это мой проект \"Mesto Russia\", который я разработал в рамках прохождения четвертого - седьмого спринтов обучения на Яндекс.Практикуме.",
+  "version": "1.0.0",
+  "description": "--- Привет! Это мой проект \"Mesto Russia\", который я разработал в рамках прохождения четвертого - восьмого спринтов обучения на Яндекс.Практикуме. Проект по функционалу напоминает Инстаграм, позволяя редактировать информацию профиля, добавлять и удалять новые карточки, ставить лайки.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/evgboch/mesto/issues"
   },
-  "homepage": "https://github.com/evgboch/mesto#readme"
+  "homepage": "https://github.com/evgboch/mesto#readme",
+  "devDependencies": {
+    "webpack": "^5.73.0"
+  }
 }
