@@ -130,18 +130,29 @@ const userInfoInstance = new UserInfo({
   profileSubtitleSelector: ".profile__subtitle"
 });
 
+const formPopupInstance = new PopupWithForm({
+  popupSelector: ".popup_profile",
+  handleFormSubmition: (formData) => {
+    userInfoInstance.setUserInfo({
+      name: formData.nameField,
+      description: formData.descriptionField
+    });
+    formPopupInstance.close();
+  }
+});
+
 function openProfilePopup() {
   const userInfo = userInfoInstance.getUserInfo();
-  const formPopupInstance = new PopupWithForm({
-    popupSelector: ".popup_profile",
-    handleFormSubmition: (formData) => {
-      userInfoInstance.setUserInfo({
-        name: formData.nameField,
-        description: formData.descriptionField
-      });
-      formPopupInstance.close();
-    }
-  });
+  // const formPopupInstance = new PopupWithForm({
+  //   popupSelector: ".popup_profile",
+  //   handleFormSubmition: (formData) => {
+  //     userInfoInstance.setUserInfo({
+  //       name: formData.nameField,
+  //       description: formData.descriptionField
+  //     });
+  //     formPopupInstance.close();
+  //   }
+  // });
 
   formPopupInstance.open(userInfo);
   formPopupInstance.setEventListeners();
@@ -149,18 +160,26 @@ function openProfilePopup() {
   formValidators["popupProfileForm"].resetValidation();
 }
 
+const cardPopupInstance = new PopupWithForm({
+  popupSelector: ".popup_card",
+  handleFormSubmition: (item) => {
+    sectionInstance.renderer(item);
+    cardPopupInstance.close();
+  }
+});
+
 function openCardPopup() {
   const clearValues = {
     name: "",
     link: ""
   }
-  const cardPopupInstance = new PopupWithForm({
-    popupSelector: ".popup_card",
-    handleFormSubmition: (item) => {
-      sectionInstance.renderer(item);
-      cardPopupInstance.close();
-    }
-  });
+  // const cardPopupInstance = new PopupWithForm({
+  //   popupSelector: ".popup_card",
+  //   handleFormSubmition: (item) => {
+  //     sectionInstance.renderer(item);
+  //     cardPopupInstance.close();
+  //   }
+  // });
   cardPopupInstance.open(clearValues);
   cardPopupInstance.setEventListeners();
 
