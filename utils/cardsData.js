@@ -1,26 +1,33 @@
+import bostonImage from "../images/boston.jpg";
+import paratyImage from "../images/paraty.jpg";
+import grandCanyonImage from "../images/grand-canyon.jpg";
+import farsImage from "../images/fars-province.jpg";
+import maldivesImage from "../images/maldives.jpg";
+import madridImage from "../images/madrid.jpg";
+
 export const initialCards = [
   {
     name: "Бостон",
-    link: "./images/boston.jpg"
+    link: bostonImage
   },
   {
     name: "Парати",
-    link: "./images/paraty.jpg"
+    link: paratyImage
   },
   {
     name: "Большой каньон",
-    link: "./images/grand-canyon.jpg"
+    link: grandCanyonImage
   },
   {
     name: "Провинция Фарс",
-    link: "./images/fars-province.jpg"
+    link: farsImage
   },
   {
     name: "Мальдивы",
-    link: "./images/maldives.jpg"
+    link: maldivesImage
   },
   {
     name: "Мадрид",
-    link: "./images/madrid.jpg"
+    link: madridImage
   }
 ];
