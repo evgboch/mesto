@@ -26,9 +26,7 @@ function enableValidation(validationParams) {
 }
 
 function handleCardClick(link, name) {
-  const imagePopupInstance = new PopupWithImage(".popup_photo");
   imagePopupInstance.open(link, name);
-  imagePopupInstance.setEventListeners();
 }
 
 function createCard(cardData) {
@@ -49,9 +47,10 @@ function openCardPopup() {
     link: ""
   }
   cardPopupInstance.open(clearValues);
-  cardPopupInstance.setEventListeners();
   formValidators["popupCardForm"].resetValidation();
 }
+
+const imagePopupInstance = new PopupWithImage(".popup_photo");
 
 const sectionInstance = new Section({
   items: initialCards,
@@ -85,6 +84,8 @@ const cardPopupInstance = new PopupWithForm({
 });
 
 sectionInstance.renderSection();
+imagePopupInstance.setEventListeners();
+cardPopupInstance.setEventListeners();
 
 profileEditButton.addEventListener("click", openProfilePopup);
 cardAddButton.addEventListener("click", openCardPopup);
