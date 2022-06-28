@@ -4,14 +4,9 @@ export class Popup {
     this._escBinder = this._handleEscClose.bind(this);
   }
 
-  _closeOpenedPopup() {
-    const popupOpened = document.querySelector(".popup_opened");
-    this.close(popupOpened);
-  }
-
   _handleEscClose(evt) {
     if (evt.key === "Escape") {
-      this._closeOpenedPopup();
+      this.close();
     }
   }
 
