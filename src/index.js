@@ -1,4 +1,5 @@
 import '../pages/index.css'; // добавили импорт главного файла стилей
+import { validationData } from "../utils/constants.js"
 import { initialCards } from "../utils/cardsData.js";
 import { Card } from "../components/Card.js";
 import { FormValidator } from "../components/FormValidator.js";
@@ -10,15 +11,6 @@ import { UserInfo } from "../components/UserInfo.js";
 const profile = document.querySelector(".profile");
 const profileEditButton = profile.querySelector(".profile__edit-button");
 const cardAddButton = profile.querySelector(".profile__add-button");
-
-const validationData = {
-  formSelector: ".popup__container",
-  inputSelector: ".popup__input",
-  submitButtonSelector: ".popup__submit-button",
-  inactiveButtonClass: "popup__submit-button_disabled",
-  inputErrorClass: "popup__input_type_error",
-  errorClass: "popup__error_visible"
-};
 
 const formValidators = {};
 
