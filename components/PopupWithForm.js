@@ -15,6 +15,10 @@ export class PopupWithForm extends Popup {
       this._formValues[input.name] = input.value;
     });
 
+    if (this._popup.classList.contains("popup_card")) {
+      this._formValues.alt = this._formValues.name;
+    }
+
     return this._formValues;
   }
 

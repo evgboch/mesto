@@ -8,26 +8,32 @@ import madridImage from "../images/madrid.jpg";
 export const initialCards = [
   {
     name: "Бостон",
-    link: bostonImage
+    link: bostonImage,
+    alt: "Часовая башня"
   },
   {
     name: "Парати",
-    link: paratyImage
+    link: paratyImage,
+    alt: "Тропический лес"
   },
   {
     name: "Большой каньон",
-    link: grandCanyonImage
+    link: grandCanyonImage,
+    alt: "Большой каньон"
   },
   {
     name: "Провинция Фарс",
-    link: farsImage
+    link: farsImage,
+    alt: "Древние руины"
   },
   {
     name: "Мальдивы",
-    link: maldivesImage
+    link: maldivesImage,
+    alt: "Морской закат"
   },
   {
     name: "Мадрид",
-    link: madridImage
+    link: madridImage,
+    alt: "Улицы Мадрида"
   }
 ];

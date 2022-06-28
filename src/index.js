@@ -25,8 +25,8 @@ function enableValidation(validationParams) {
   });
 }
 
-function handleCardClick(link, name) {
-  imagePopupInstance.open(link, name);
+function handleCardClick(link, name, alt) {
+  imagePopupInstance.open(link, name, alt);
 }
 
 function createCard(cardData) {
