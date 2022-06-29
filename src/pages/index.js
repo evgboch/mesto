@@ -37,7 +37,6 @@ function createCard(cardData) {
 function openProfilePopup() {
   const userInfo = userInfoInstance.getUserInfo();
   formPopupInstance.open(userInfo);
-  formPopupInstance.setEventListeners();
   formValidators["popupProfileForm"].resetValidation();
 }
 
@@ -86,6 +85,7 @@ const cardPopupInstance = new PopupWithForm({
 sectionInstance.renderSection();
 imagePopupInstance.setEventListeners();
 cardPopupInstance.setEventListeners();
+formPopupInstance.setEventListeners();
 
 profileEditButton.addEventListener("click", openProfilePopup);
 cardAddButton.addEventListener("click", openCardPopup);
