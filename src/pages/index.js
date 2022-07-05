@@ -7,6 +7,7 @@ import { PopupWithForm } from "../components/PopupWithForm.js";
 import { PopupWithImage } from "../components/PopupWithImage.js";
 import { Section } from "../components/Section.js";
 import { UserInfo } from "../components/UserInfo.js";
+import { Api } from '../components/Api.js';
 
 const profile = document.querySelector(".profile");
 const profileEditButton = profile.querySelector(".profile__edit-button");
@@ -60,7 +61,8 @@ const sectionInstance = new Section({
 
 const userInfoInstance = new UserInfo({
   profileTitleSelector: ".profile__title",
-  profileSubtitleSelector: ".profile__subtitle"
+  profileSubtitleSelector: ".profile__subtitle",
+  profileAvatarSelector: ".profile__avatar"
 });
 
 const formPopupInstance = new PopupWithForm({
@@ -81,6 +83,27 @@ const cardPopupInstance = new PopupWithForm({
     cardPopupInstance.close();
   }
 });
+
+
+const api = new Api({
+  baseUrl: "https://mesto.nomoreparties.co/v1/cohort-44",
+  headers: {
+    authorization: "8848ee4a-47e5-4bf2-b34e-b286c4490bd6",
+    "Content-Type": "application/json"
+  }
+});
+
+let userId = null;
+
+api.getUserInfo()
+  .then((data) => {
+    userId = data._id;
+    userInfoInstance.setUserInfo({
+      name: data.name,
+      description: data.about,
+      avatarLink: data.avatar
+    });
+  });
 
 sectionInstance.renderSection();
 imagePopupInstance.setEventListeners();
