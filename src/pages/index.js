@@ -105,7 +105,21 @@ api.getUserInfo()
     });
   });
 
-sectionInstance.renderSection();
+api.getInitialCards()
+  .then((cards) => {
+    // console.log(cards);
+    // const sectionInstance = new Section({
+    //   items: cards,
+    //   renderer: (item) => {
+    //     const cardsElement = createCard(item);
+    //     sectionInstance.addItem(cardsElement);
+    // }}, ".photo-cards__grid");
+
+
+    sectionInstance.renderSection(cards);
+  });
+
+// sectionInstance.renderSection();
 imagePopupInstance.setEventListeners();
 cardPopupInstance.setEventListeners();
 formPopupInstance.setEventListeners();
