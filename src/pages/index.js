@@ -87,7 +87,14 @@ const formPopupInstance = new PopupWithForm({
 const cardPopupInstance = new PopupWithForm({
   popupSelector: ".popup_card",
   handleFormSubmition: (item) => {
-    sectionInstance.renderer(item);
+    api.addNewCard({
+      name: item.name,
+      link: item.link
+    })
+      .then((res) => {
+        sectionInstance.renderer(res);
+      })
+
     cardPopupInstance.close();
   }
 });
