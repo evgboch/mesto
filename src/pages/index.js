@@ -68,10 +68,18 @@ const userInfoInstance = new UserInfo({
 const formPopupInstance = new PopupWithForm({
   popupSelector: ".popup_profile",
   handleFormSubmition: (formData) => {
-    userInfoInstance.setUserInfo({
+    api.editUserInfo({
       name: formData.nameField,
       description: formData.descriptionField
-    });
+    })
+      .then((data) => {
+        userInfoInstance.setUserInfo({
+          name: data.name,
+          description: data.about,
+          avatarLink: data.avatar
+        });
+      })
+
     formPopupInstance.close();
   }
 });
@@ -107,19 +115,9 @@ api.getUserInfo()
 
 api.getInitialCards()
   .then((cards) => {
-    // console.log(cards);
-    // const sectionInstance = new Section({
-    //   items: cards,
-    //   renderer: (item) => {
-    //     const cardsElement = createCard(item);
-    //     sectionInstance.addItem(cardsElement);
-    // }}, ".photo-cards__grid");
-
-
     sectionInstance.renderSection(cards);
   });
 
-// sectionInstance.renderSection();
 imagePopupInstance.setEventListeners();
 cardPopupInstance.setEventListeners();
 formPopupInstance.setEventListeners();

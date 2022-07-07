@@ -29,6 +29,23 @@ export class Api {
         return Promise.reject(`Ошибка: ${res.status}`);
       });
   }
+
+  editUserInfo({name, description}) {
+    return fetch(`${this._baseUrl}/users/me`, {
+      method: "PATCH",
+      headers: this._headers,
+      body: JSON.stringify({
+        name: name,
+        about: description
+      })
+    })
+      .then((res) => {
+        if(res.ok) {
+          return res.json();
+        }
+        return Promise.reject(`Ошибка: ${res.status}`);
+      });
+  }
 }
 
 
