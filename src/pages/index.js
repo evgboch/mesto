@@ -99,7 +99,6 @@ const cardPopupInstance = new PopupWithForm({
   }
 });
 
-
 const api = new Api({
   baseUrl: "https://mesto.nomoreparties.co/v1/cohort-44",
   headers: {
