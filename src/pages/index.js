@@ -1,4 +1,5 @@
 import '../pages/index.css'; // добавили импорт главного файла стилей
+import { Api } from '../components/Api.js';
 import { validationData } from "../utils/constants.js"
 import { initialCards } from "../utils/cardsData.js";
 import { Card } from "../components/Card.js";
@@ -8,7 +9,6 @@ import { PopupWithImage } from "../components/PopupWithImage.js";
 import { PopupWithConfirmation } from '../components/PopupWithConfirmation.js';
 import { Section } from "../components/Section.js";
 import { UserInfo } from "../components/UserInfo.js";
-import { Api } from '../components/Api.js';
 
 const profile = document.querySelector(".profile");
 const profileEditButton = profile.querySelector(".profile__edit-button");
@@ -114,9 +114,20 @@ const userInfoInstance = new UserInfo({
   profileAvatarSelector: ".profile__avatar"
 });
 
+// function formSending(isSending) {
+//   if(isSending) {
+//     spinner.classList.add("spinner_visible");
+//     content.classList.add("content_hidden");
+//   } else {
+//     spinner.classList.remove("spinner_visible");
+//     content.classList.remove("content_hidden");
+//   }
+// }
+
 const formPopupInstance = new PopupWithForm({
   popupSelector: ".popup_profile",
   handleFormSubmition: (formData) => {
+    formPopupInstance.formSending(true);
     api.editUserInfo({
       name: formData.nameField,
       description: formData.descriptionField
@@ -130,6 +141,9 @@ const formPopupInstance = new PopupWithForm({
       .catch((err) => {
         console.log(err);
       })
+      .finally(() => {
+        formPopupInstance.formSending(false);
+      })
 
     formPopupInstance.close();
   }
@@ -138,6 +152,7 @@ const formPopupInstance = new PopupWithForm({
 const cardPopupInstance = new PopupWithForm({
   popupSelector: ".popup_card",
   handleFormSubmition: (item) => {
+    cardPopupInstance.formSending(true);
     api.addNewCard({
       name: item.name,
       link: item.link
@@ -148,6 +163,9 @@ const cardPopupInstance = new PopupWithForm({
       .catch((err) => {
         console.log(err);
       })
+      .finally(() => {
+        cardPopupInstance.formSending(false);
+      })
 
     cardPopupInstance.close();
   }
@@ -156,6 +174,7 @@ const cardPopupInstance = new PopupWithForm({
 const avatarPopupInstance = new PopupWithForm({
   popupSelector: ".popup_avatar",
   handleFormSubmition: (formData) => {
+    avatarPopupInstance.formSending(true);
     api.editAvatar(formData["avatar-link"])
       .then((data) => {
         userInfoInstance.editAvatar({
@@ -165,6 +184,9 @@ const avatarPopupInstance = new PopupWithForm({
       })
       .catch((err) => {
         console.log(err);
+      })
+      .finally(() => {
+        avatarPopupInstance.formSending(false);
       })
 
     avatarPopupInstance.close();
@@ -179,26 +201,40 @@ const api = new Api({
   }
 });
 
-api.getUserInfo()
-  .then((data) => {
+Promise.all([api.getUserInfo(), api.getInitialCards()])
+  .then(([data, cards]) => {
     userId = data._id;
     userInfoInstance.setUserInfo({
       name: data.name,
       description: data.about,
       avatarLink: data.avatar
     });
-  })
-  .catch((err) => {
-    console.log(err);
-  })
-
-api.getInitialCards()
-  .then((cards) => {
     sectionInstance.renderSection(cards);
   })
-  .catch((err) => {
+  .catch(([err]) => {
     console.log(err);
-  })
+  });
+
+// api.getUserInfo()
+//   .then((data) => {
+//     userId = data._id;
+//     userInfoInstance.setUserInfo({
+//       name: data.name,
+//       description: data.about,
+//       avatarLink: data.avatar
+//     });
+//   })
+//   .catch((err) => {
+//     console.log(err);
+//   })
+
+// api.getInitialCards()
+//   .then((cards) => {
+//     sectionInstance.renderSection(cards);
+//   })
+//   .catch((err) => {
+//     console.log(err);
+//   })
 
 imagePopupInstance.setEventListeners();
 cardPopupInstance.setEventListeners();
