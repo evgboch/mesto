@@ -34,6 +34,22 @@ export class Api {
       });
   }
 
+  editAvatar(link) {
+    return fetch(`${this._baseUrl}/users/me/avatar`, {
+      method: "PATCH",
+      headers: this._headers,
+      body: JSON.stringify({
+        avatar: link,
+      })
+    })
+      .then((res) => {
+        if(res.ok) {
+          return res.json();
+        }
+        return Promise.reject(`Ошибка: ${res.status}`);
+      });
+  }
+
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, {
       method: "GET",

@@ -13,6 +13,7 @@ import { Api } from '../components/Api.js';
 const profile = document.querySelector(".profile");
 const profileEditButton = profile.querySelector(".profile__edit-button");
 const cardAddButton = profile.querySelector(".profile__add-button");
+const avatarEditor = document.querySelector(".profile__avatar-overlay");
 
 let userId = null;
 
@@ -90,6 +91,14 @@ function openCardPopup() {
   formValidators["popupCardForm"].resetValidation();
 }
 
+function openAvatarPopup() {
+  const clearValues = {
+    "avatar-link": ""
+  }
+  avatarPopupInstance.open(clearValues);
+  formValidators["popupAvatarForm"].resetValidation();
+}
+
 const imagePopupInstance = new PopupWithImage(".popup_photo");
 
 const confirmationPopupInstance = new PopupWithConfirmation(".popup_confirmation");
@@ -97,7 +106,6 @@ const confirmationPopupInstance = new PopupWithConfirmation(".popup_confirmation
 const sectionInstance = new Section({
   items: initialCards,
   renderer: (item) => {
-    // debugger
     const cardsElement = createCard(item);
     sectionInstance.addItem(cardsElement);
 }}, ".photo-cards__grid");
@@ -116,10 +124,9 @@ const formPopupInstance = new PopupWithForm({
       description: formData.descriptionField
     })
       .then((data) => {
-        userInfoInstance.setUserInfo({
+        userInfoInstance.editUserInfo({
           name: data.name,
-          description: data.about,
-          avatarLink: data.avatar
+          description: data.about
         });
       })
 
@@ -139,6 +146,21 @@ const cardPopupInstance = new PopupWithForm({
       })
 
     cardPopupInstance.close();
+  }
+});
+
+const avatarPopupInstance = new PopupWithForm({
+  popupSelector: ".popup_avatar",
+  handleFormSubmition: (formData) => {
+    api.editAvatar(formData["avatar-link"])
+      .then((data) => {
+        userInfoInstance.editAvatar({
+          name: data.name,
+          avatarLink: data.avatar
+        });
+      })
+
+    avatarPopupInstance.close();
   }
 });
 
@@ -168,9 +190,11 @@ api.getInitialCards()
 imagePopupInstance.setEventListeners();
 cardPopupInstance.setEventListeners();
 formPopupInstance.setEventListeners();
+avatarPopupInstance.setEventListeners();
 confirmationPopupInstance.setEventListeners();
 
 profileEditButton.addEventListener("click", openProfilePopup);
 cardAddButton.addEventListener("click", openCardPopup);
+avatarEditor.addEventListener("click", openAvatarPopup)
 
 enableValidation(validationData);

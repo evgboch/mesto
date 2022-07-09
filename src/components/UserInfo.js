@@ -16,6 +16,16 @@ export class UserInfo {
     this._profileTitle.textContent = name;
     this._profileSubtitle.textContent = description;
     this._profileAvatar.setAttribute("src", avatarLink);
-    this._profileAvatar.setAttribute("alt", name)
+    this._profileAvatar.setAttribute("alt", name);
+  }
+
+  editAvatar({name, avatarLink}) {
+    this._profileAvatar.setAttribute("src", avatarLink);
+    this._profileAvatar.setAttribute("alt", name);
+  }
+
+  editUserInfo({name, description}) {
+    this._profileTitle.textContent = name;
+    this._profileSubtitle.textContent = description;
   }
 }
