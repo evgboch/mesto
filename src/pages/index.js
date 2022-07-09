@@ -5,6 +5,7 @@ import { Card } from "../components/Card.js";
 import { FormValidator } from "../components/FormValidator.js";
 import { PopupWithForm } from "../components/PopupWithForm.js";
 import { PopupWithImage } from "../components/PopupWithImage.js";
+import { PopupWithConfirmation } from '../components/PopupWithConfirmation.js';
 import { Section } from "../components/Section.js";
 import { UserInfo } from "../components/UserInfo.js";
 import { Api } from '../components/Api.js';
@@ -30,8 +31,12 @@ function handleCardClick(link, name, alt) {
   imagePopupInstance.open(link, name, alt);
 }
 
+function handleDeleteButton(evt) {
+  confirmationPopupInstance.open(evt);
+}
+
 function createCard(cardData) {
-  const cardsInstance = new Card(cardData, ".photo-cards-template", handleCardClick);
+  const cardsInstance = new Card(cardData, ".photo-cards-template", handleCardClick, handleDeleteButton);
   return cardsInstance.generatePhotoCard();
 }
 
@@ -51,6 +56,8 @@ function openCardPopup() {
 }
 
 const imagePopupInstance = new PopupWithImage(".popup_photo");
+
+const confirmationPopupInstance = new PopupWithConfirmation(".popup_confirmation");
 
 const sectionInstance = new Section({
   items: initialCards,
@@ -127,6 +134,7 @@ api.getInitialCards()
 imagePopupInstance.setEventListeners();
 cardPopupInstance.setEventListeners();
 formPopupInstance.setEventListeners();
+confirmationPopupInstance.setEventListeners();
 
 profileEditButton.addEventListener("click", openProfilePopup);
 cardAddButton.addEventListener("click", openCardPopup);
