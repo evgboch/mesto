@@ -36,7 +36,7 @@ function handleDeleteButton(evt) {
 }
 
 function createCard(cardData) {
-  const cardsInstance = new Card(cardData, ".photo-cards-template", handleCardClick, handleDeleteButton);
+  const cardsInstance = new Card(cardData, userId, ".photo-cards-template", handleCardClick, handleDeleteButton);
   return cardsInstance.generatePhotoCard();
 }
 

@@ -1,9 +1,11 @@
 export class Card {
-  constructor (cardsData, templateSelector, handleCardClick, handleDeleteButton) {
+  constructor (cardsData, userId, templateSelector, handleCardClick, handleDeleteButton) {
     this._name = cardsData.name;
     this._link = cardsData.link;
     this._alt = cardsData.name;
     this._likes = cardsData.likes;
+    this._ownerId = cardsData.owner._id;
+    this._userId = userId;
     this._handleCardClick = handleCardClick;
     this._handleDeleteButton = handleDeleteButton;
     this._newPhotoCard = document.querySelector(templateSelector).content.querySelector(".photo-cards__element").cloneNode(true);
@@ -39,6 +41,10 @@ export class Card {
     this._photoCardPicture.setAttribute("src", this._link);
     this._photoCardPicture.setAttribute("alt", this._alt);
     this._likesCounter.textContent = this._likes.length;
+
+    if (this._ownerId === this._userId) {
+      this._deleteButton.classList.add("photo-cards__delete-button_active");
+    }
 
     this._setEventListeners();
 

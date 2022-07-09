@@ -1,4 +1,5 @@
 .photo-cards__delete-button {
+  display: none;
   border-radius: 0;
   border: none;
   padding: 0;
