@@ -114,16 +114,6 @@ const userInfoInstance = new UserInfo({
   profileAvatarSelector: ".profile__avatar"
 });
 
-// function formSending(isSending) {
-//   if(isSending) {
-//     spinner.classList.add("spinner_visible");
-//     content.classList.add("content_hidden");
-//   } else {
-//     spinner.classList.remove("spinner_visible");
-//     content.classList.remove("content_hidden");
-//   }
-// }
-
 const formPopupInstance = new PopupWithForm({
   popupSelector: ".popup_profile",
   handleFormSubmition: (formData) => {
@@ -214,27 +204,6 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
   .catch(([err]) => {
     console.log(err);
   });
-
-// api.getUserInfo()
-//   .then((data) => {
-//     userId = data._id;
-//     userInfoInstance.setUserInfo({
-//       name: data.name,
-//       description: data.about,
-//       avatarLink: data.avatar
-//     });
-//   })
-//   .catch((err) => {
-//     console.log(err);
-//   })
-
-// api.getInitialCards()
-//   .then((cards) => {
-//     sectionInstance.renderSection(cards);
-//   })
-//   .catch((err) => {
-//     console.log(err);
-//   })
 
 imagePopupInstance.setEventListeners();
 cardPopupInstance.setEventListeners();
