@@ -50,7 +50,17 @@ function createCard(cardData) {
           })
           // .catch(обрабатываем ошибку)
       });
-    });
+    },
+
+    (card) => {
+      api.addLike(card.cardId)
+        .then((res) => {
+          cardsInstance.addLike(res);
+        })
+        // .catch(обрабатываем ошибку)
+    }
+
+    );
 
   return cardsInstance.generatePhotoCard();
 }
@@ -77,6 +87,7 @@ const confirmationPopupInstance = new PopupWithConfirmation(".popup_confirmation
 const sectionInstance = new Section({
   items: initialCards,
   renderer: (item) => {
+    // debugger
     const cardsElement = createCard(item);
     sectionInstance.addItem(cardsElement);
 }}, ".photo-cards__grid");
