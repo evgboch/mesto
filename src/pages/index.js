@@ -34,13 +34,6 @@ function handleCardClick(link, name, alt) {
   imagePopupInstance.open(link, name, alt);
 }
 
-// function handleDeleteButton(evt) {
-//   // const c = cardData;
-//   // cardsInstance.getId();
-//   debugger
-//   confirmationPopupInstance.open(evt);
-// }
-
 function createCard(cardData) {
   const cardsInstance = new Card(cardData, userId, ".photo-cards-template", handleCardClick,
     (card) => {
@@ -51,7 +44,9 @@ function createCard(cardData) {
             cardsInstance.removeCard();
             confirmationPopupInstance.close();
           })
-          // .catch(обрабатываем ошибку)
+          .catch((err) => {
+            console.log(err);
+          })
       });
     },
 
@@ -60,7 +55,9 @@ function createCard(cardData) {
         .then((res) => {
           cardsInstance.toggleLike(res);
         })
-        // .catch(обрабатываем ошибку)
+        .catch((err) => {
+          console.log(err);
+        })
     },
 
     (card) => {
@@ -68,10 +65,11 @@ function createCard(cardData) {
         .then((res) => {
           cardsInstance.toggleLike(res);
         })
-        // .catch(обрабатываем ошибку)
+        .catch((err) => {
+          console.log(err);
+        })
     }
-
-    );
+  );
 
   return cardsInstance.generatePhotoCard();
 }
@@ -129,6 +127,9 @@ const formPopupInstance = new PopupWithForm({
           description: data.about
         });
       })
+      .catch((err) => {
+        console.log(err);
+      })
 
     formPopupInstance.close();
   }
@@ -144,6 +145,9 @@ const cardPopupInstance = new PopupWithForm({
       .then((res) => {
         sectionInstance.renderer(res);
       })
+      .catch((err) => {
+        console.log(err);
+      })
 
     cardPopupInstance.close();
   }
@@ -158,6 +162,9 @@ const avatarPopupInstance = new PopupWithForm({
           name: data.name,
           avatarLink: data.avatar
         });
+      })
+      .catch((err) => {
+        console.log(err);
       })
 
     avatarPopupInstance.close();
@@ -180,12 +187,18 @@ api.getUserInfo()
       description: data.about,
       avatarLink: data.avatar
     });
-  });
+  })
+  .catch((err) => {
+    console.log(err);
+  })
 
 api.getInitialCards()
   .then((cards) => {
     sectionInstance.renderSection(cards);
-  });
+  })
+  .catch((err) => {
+    console.log(err);
+  })
 
 imagePopupInstance.setEventListeners();
 cardPopupInstance.setEventListeners();
