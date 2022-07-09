@@ -4,7 +4,7 @@ export class Card {
     this._link = cardsData.link;
     this._alt = cardsData.name;
     this._likes = cardsData.likes;
-    this._cardId = cardsData._id;
+    this.cardId = cardsData._id;
     this._ownerId = cardsData.owner._id;
     this._userId = userId;
     this._handleCardClick = handleCardClick;
@@ -21,24 +21,19 @@ export class Card {
     evt.target.classList.toggle("photo-cards__like-button_active");
   }
 
-  // _handleDeleteButton(evt) {
-  //   const cardForDelete = evt.target.closest(".photo-cards__element");
-  //   debugger
-  //   this._handleDeleteConfirmation(cardForDelete);
-  //   // evt.target.closest(".photo-cards__element").remove();
-  // }
-
-  // _handleDel() {
-  //   this._handleDeleteButton(this._cardId).bind(this);
-  // }
-
   _setEventListeners() {
     this._photoCardPicture.addEventListener("click", () => {
       this._handleCardClick(this._link, this._name, this._alt);
     });
     this._likeButton.addEventListener("click", this._handleLikeButton);
-    this._deleteButton.addEventListener("click", this._handleDeleteButton);
-    // this._deleteButton.addEventListener("click", this._handleDel);
+    this._deleteButton.addEventListener("click", () => {
+      this._handleDeleteButton(this);
+    });
+  }
+
+  removeCard() {
+    debugger
+    this._newPhotoCard.remove();
   }
 
   generatePhotoCard() {

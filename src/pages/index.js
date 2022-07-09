@@ -39,9 +39,19 @@ function handleCardClick(link, name, alt) {
 // }
 
 function createCard(cardData) {
-  const cardsInstance = new Card(cardData, userId, ".photo-cards-template", handleCardClick, (evt) => {
-    confirmationPopupInstance.open(evt, cardData._id);
-  });
+  const cardsInstance = new Card(cardData, userId, ".photo-cards-template", handleCardClick,
+    (card) => {
+      confirmationPopupInstance.open();
+      confirmationPopupInstance.setSubmitAction(() => {
+        api.deleteCard(card.cardId)
+          .then(() => {
+            cardsInstance.removeCard();
+            confirmationPopupInstance.close();
+          })
+          // .catch(обрабатываем ошибку)
+      });
+    });
+
   return cardsInstance.generatePhotoCard();
 }
 
@@ -62,15 +72,7 @@ function openCardPopup() {
 
 const imagePopupInstance = new PopupWithImage(".popup_photo");
 
-const confirmationPopupInstance = new PopupWithConfirmation({
-  popupSelector: ".popup_confirmation",
-  handleDeleteConfirmation: (cardId) => {
-    api.deleteCard(cardId)
-      .then((res) => {
-        console.log(res.message);
-      })
-  }
-});
+const confirmationPopupInstance = new PopupWithConfirmation(".popup_confirmation");
 
 const sectionInstance = new Section({
   items: initialCards,
