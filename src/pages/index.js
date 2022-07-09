@@ -31,12 +31,17 @@ function handleCardClick(link, name, alt) {
   imagePopupInstance.open(link, name, alt);
 }
 
-function handleDeleteButton(evt) {
-  confirmationPopupInstance.open(evt);
-}
+// function handleDeleteButton(evt) {
+//   // const c = cardData;
+//   // cardsInstance.getId();
+//   debugger
+//   confirmationPopupInstance.open(evt);
+// }
 
 function createCard(cardData) {
-  const cardsInstance = new Card(cardData, userId, ".photo-cards-template", handleCardClick, handleDeleteButton);
+  const cardsInstance = new Card(cardData, userId, ".photo-cards-template", handleCardClick, (evt) => {
+    confirmationPopupInstance.open(evt, cardData._id);
+  });
   return cardsInstance.generatePhotoCard();
 }
 
@@ -57,7 +62,15 @@ function openCardPopup() {
 
 const imagePopupInstance = new PopupWithImage(".popup_photo");
 
-const confirmationPopupInstance = new PopupWithConfirmation(".popup_confirmation");
+const confirmationPopupInstance = new PopupWithConfirmation({
+  popupSelector: ".popup_confirmation",
+  handleDeleteConfirmation: (cardId) => {
+    api.deleteCard(cardId)
+      .then((res) => {
+        console.log(res.message);
+      })
+  }
+});
 
 const sectionInstance = new Section({
   items: initialCards,
