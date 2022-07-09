@@ -14,6 +14,8 @@ const profile = document.querySelector(".profile");
 const profileEditButton = profile.querySelector(".profile__edit-button");
 const cardAddButton = profile.querySelector(".profile__add-button");
 
+let userId = null;
+
 const formValidators = {};
 
 function enableValidation(validationParams) {
@@ -55,7 +57,15 @@ function createCard(cardData) {
     (card) => {
       api.addLike(card.cardId)
         .then((res) => {
-          cardsInstance.addLike(res);
+          cardsInstance.toggleLike(res);
+        })
+        // .catch(обрабатываем ошибку)
+    },
+
+    (card) => {
+      api.removeLike(card.cardId)
+        .then((res) => {
+          cardsInstance.toggleLike(res);
         })
         // .catch(обрабатываем ошибку)
     }
@@ -139,8 +149,6 @@ const api = new Api({
     "Content-Type": "application/json"
   }
 });
-
-let userId = null;
 
 api.getUserInfo()
   .then((data) => {

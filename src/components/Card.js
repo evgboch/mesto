@@ -1,5 +1,5 @@
 export class Card {
-  constructor (cardsData, userId, templateSelector, handleCardClick, handleDeleteButton, handleLikeButton) {
+  constructor (cardsData, userId, templateSelector, handleCardClick, handleDeleteButton, handleLikeAddition, handleLikeRemoval) {
     this._name = cardsData.name;
     this._link = cardsData.link;
     this._alt = cardsData.name;
@@ -9,7 +9,8 @@ export class Card {
     this._userId = userId;
     this._handleCardClick = handleCardClick;
     this._handleDeleteButton = handleDeleteButton;
-    this._handleLikeButton = handleLikeButton;
+    this._handleLikeAddition = handleLikeAddition;
+    this._handleLikeRemoval = handleLikeRemoval;
     this._newPhotoCard = document.querySelector(templateSelector).content.querySelector(".photo-cards__element").cloneNode(true);
     this._photoCardTitle = this._newPhotoCard.querySelector(".photo-cards__title");
     this._photoCardPicture = this._newPhotoCard.querySelector(".photo-cards__picture");
@@ -28,20 +29,31 @@ export class Card {
     });
     // this._likeButton.addEventListener("click", this._handleLikeButton);
     this._likeButton.addEventListener("click", () => {
-      this._handleLikeButton(this);
+      if (!this._checkIfUserLiked()) {
+        this._handleLikeAddition(this);
+      } else {
+        this._handleLikeRemoval(this);
+      }
     });
     this._deleteButton.addEventListener("click", () => {
       this._handleDeleteButton(this);
     });
   }
 
-  addLike(res) {
+  toggleLike(res) {
     this._likeButton.classList.toggle("photo-cards__like-button_active");
     this._likesCounter.textContent = res.likes.length;
+    this._likes = res.likes;
   }
 
   removeCard() {
     this._newPhotoCard.remove();
+  }
+
+  _checkIfUserLiked() {
+    return this._likes.some((like) => {
+      return like._id === this._userId;
+    });
   }
 
   generatePhotoCard() {
@@ -53,11 +65,16 @@ export class Card {
     if (this._ownerId === this._userId) {
       this._deleteButton.classList.add("photo-cards__delete-button_active");
     }
-    if (this._likes.some((like) => {
-      return like._id === this._userId;
-    })) {
+
+    if (this._checkIfUserLiked()) {
       this._likeButton.classList.toggle("photo-cards__like-button_active");
     }
+
+    // if (this._likes.some((like) => {
+    //   return like._id === this._userId;
+    // })) {
+    //   this._likeButton.classList.toggle("photo-cards__like-button_active");
+    // }
 
     this._setEventListeners();
 
