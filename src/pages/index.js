@@ -127,6 +127,8 @@ const formPopupInstance = new PopupWithForm({
           name: data.name,
           description: data.about
         });
+
+        formPopupInstance.close();
       })
       .catch((err) => {
         console.log(err);
@@ -134,8 +136,6 @@ const formPopupInstance = new PopupWithForm({
       .finally(() => {
         formPopupInstance.formSending(false);
       })
-
-    formPopupInstance.close();
   }
 });
 
@@ -149,6 +149,7 @@ const cardPopupInstance = new PopupWithForm({
     })
       .then((res) => {
         sectionInstance.renderer(res);
+        cardPopupInstance.close();
       })
       .catch((err) => {
         console.log(err);
@@ -156,8 +157,6 @@ const cardPopupInstance = new PopupWithForm({
       .finally(() => {
         cardPopupInstance.formSending(false);
       })
-
-    cardPopupInstance.close();
   }
 });
 
@@ -171,6 +170,8 @@ const avatarPopupInstance = new PopupWithForm({
           name: data.name,
           avatarLink: data.avatar
         });
+
+        avatarPopupInstance.close();
       })
       .catch((err) => {
         console.log(err);
@@ -178,8 +179,6 @@ const avatarPopupInstance = new PopupWithForm({
       .finally(() => {
         avatarPopupInstance.formSending(false);
       })
-
-    avatarPopupInstance.close();
   }
 });
 
